@@ -32,16 +32,19 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
     <header
       id="navbar"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled
-        ? "py-3 bg-brand-purple backdrop-blur-xl"
-        : "py-5 bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "py-4 bg-brand-purple backdrop-blur-xl"
+          : "py-6 bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4 md:px-10 flex items-center justify-between">
         {/* Logo */}
@@ -52,7 +55,7 @@ export default function Navbar() {
             width={130}
             height={36}
             priority
-            className="h-7 md:h-8 w-auto"
+            className="h-8 md:h-10 w-auto"
           />
         </Link>
 
@@ -62,10 +65,9 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className={`relative px-5 py-2 text-[0.9rem] font-medium rounded-lg transition-all duration-300 ${link.active
-                ? "text-[#ff4d4d]"
-                : "text-white/70 hover:text-white"
-                }`}
+              className={`relative px-5 py-2 text-xl font-medium rounded-lg transition-all duration-300 ${
+                link.active ? "text-white" : "text-white/80 hover:text-white"
+              }`}
             >
               {link.label}
             </a>
@@ -81,8 +83,18 @@ export default function Navbar() {
           <span className="w-7 h-7 rounded-full bg-gradient-to-br from-[#6a3dfc] to-[#ff4d4d] flex items-center justify-center text-[10px] font-bold text-white">
             G
           </span>
-          Book A Intro
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70">
+          Book A Call
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="opacity-70"
+          >
             <path d="M7 17L17 7M17 7H7M17 7v10" />
           </svg>
         </a>
@@ -95,16 +107,19 @@ export default function Navbar() {
         >
           <div className="w-5 h-4 flex flex-col justify-between">
             <span
-              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""
-                }`}
+              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${
+                mobileOpen ? "rotate-45 translate-y-[7px]" : ""
+              }`}
             />
             <span
-              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${mobileOpen ? "opacity-0 scale-0" : ""
-                }`}
+              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${
+                mobileOpen ? "opacity-0 scale-0" : ""
+              }`}
             />
             <span
-              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""
-                }`}
+              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${
+                mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              }`}
             />
           </div>
         </button>
@@ -112,11 +127,14 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${mobileOpen
-          ? "opacity-100 pointer-events-auto"
-          : "opacity-0 pointer-events-none"
-          }`}
-        style={{ background: "linear-gradient(180deg, #0a0318 0%, #1a0e3f 100%)" }}
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        style={{
+          background: "linear-gradient(180deg, #0a0318 0%, #1a0e3f 100%)",
+        }}
       >
         <nav className="flex flex-col items-center gap-2">
           {navLinks.map((link, i) => (
@@ -124,12 +142,15 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className={`text-2xl font-semibold py-3 px-8 rounded-2xl transition-all duration-300 ${link.active
-                ? "text-[#ff4d4d]"
-                : "text-white/80 hover:text-white"
-                }`}
+              className={`text-2xl font-semibold py-3 px-8 rounded-2xl transition-all duration-300 ${
+                link.active
+                  ? "text-brand-purple"
+                  : "text-white/80 hover:text-white"
+              }`}
               style={{
-                animation: mobileOpen ? `fadeInUp 0.5s ${i * 0.08}s forwards` : "none",
+                animation: mobileOpen
+                  ? `fadeInUp 0.5s ${i * 0.08}s forwards`
+                  : "none",
                 opacity: mobileOpen ? undefined : 0,
               }}
             >
@@ -146,7 +167,7 @@ export default function Navbar() {
             opacity: mobileOpen ? undefined : 0,
           }}
         >
-          Book A Intro
+          Book A Call
         </a>
       </div>
     </header>

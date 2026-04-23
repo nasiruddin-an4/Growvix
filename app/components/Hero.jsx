@@ -18,7 +18,7 @@ export default function Hero() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -52,14 +52,14 @@ export default function Hero() {
             className="opacity-0 delay-100 text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium leading-[1.1] tracking-tight text-white mb-6"
           >
             Next-Gen <br />
-            Digital Solutions
-            for Growing <span className=""> Your Brand.</span>
+            Digital Solutions for Growing <span className=""> Your Brand</span>
           </h1>
           <p
             data-animate
             className="opacity-0 delay-200 text-lg md:text-2xl font-medium text-white/90 leading-relaxed max-w-2xl"
           >
-            Growvix is ready to design, develop, and market your business <br /> so you can focus on growth.
+            Growvix is ready to design, develop, and market your business <br />{" "}
+            so you can focus on growth.
           </p>
         </div>
       </div>

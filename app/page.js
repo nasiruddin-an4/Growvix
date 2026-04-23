@@ -1,4 +1,6 @@
 import Hero from "./components/Hero";
+import Ecosystem from "./components/Ecosystem";
+import ProvenNumbers from "./components/ProvenNumbers";
 import Services from "./components/Services";
 import About from "./components/About";
 import Portfolio from "./components/Portfolio";
@@ -11,6 +13,12 @@ export default function Home() {
     <>
       {/* ===== Hero Section ===== */}
       <Hero />
+
+      {/* ===== Ecosystem Section ===== */}
+      <Ecosystem />
+
+      {/* ===== Proven Numbers Section ===== */}
+      <ProvenNumbers />
 
       {/* ===== Services Section ===== */}
       <Services />
