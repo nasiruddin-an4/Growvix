@@ -48,7 +48,11 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-10 flex items-center justify-between">
         {/* Logo */}
-        <Link href="#home" className="relative z-50 flex items-center gap-2">
+        <Link
+          href="#home"
+          className="relative z-50 flex items-center gap-2"
+          aria-label="Growvix home"
+        >
           <Image
             src="/logo/full_white_logo.svg"
             alt="Growvix Logo"
@@ -104,6 +108,8 @@ export default function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-xl border border-white/20 transition-colors"
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
         >
           <div className="w-5 h-4 flex flex-col justify-between">
             <span
@@ -127,6 +133,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
         className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
           mobileOpen
             ? "opacity-100 pointer-events-auto"

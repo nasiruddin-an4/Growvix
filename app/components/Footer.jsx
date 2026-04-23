@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-16 border-b border-white/[0.06]">
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="#home">
+            <Link href="#home" aria-label="Growvix home">
               <Image
                 src="/logo/full_white_logo.svg"
                 alt="Growvix"
@@ -85,8 +85,8 @@ export default function Footer() {
             </Link>
             <p className="mt-5 text-text-on-dark-muted text-sm leading-relaxed max-w-xs">
               We are a full-service digital agency specializing in software
-              development and digital marketing. We help businesses grow
-              through technology and strategy.
+              development and digital marketing. We help businesses grow through
+              technology and strategy.
             </p>
 
             {/* Social icons */}
@@ -163,7 +163,10 @@ export default function Footer() {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <a href="mailto:hello@growvix.com" className="hover:text-white transition-colors">
+                <a
+                  href="mailto:hello@growvix.com"
+                  className="hover:text-white transition-colors"
+                >
                   hello@growvix.com
                 </a>
               </li>
@@ -181,7 +184,10 @@ export default function Footer() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                <a href="tel:+1234567890" className="hover:text-white transition-colors">
+                <a
+                  href="tel:+1234567890"
+                  className="hover:text-white transition-colors"
+                >
                   +1 (234) 567-890
                 </a>
               </li>
@@ -200,7 +206,11 @@ export default function Footer() {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span>San Francisco, CA<br />United States</span>
+                <span>
+                  San Francisco, CA
+                  <br />
+                  United States
+                </span>
               </li>
             </ul>
           </div>
@@ -212,10 +222,16 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Growvix. All rights reserved.
           </p>
           <div className="flex gap-6 text-text-on-dark-muted/60 text-sm">
-            <a href="#" className="hover:text-white transition-colors">
+            <a
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a
+              href="/terms-of-service"
+              className="hover:text-white transition-colors"
+            >
               Terms of Service
             </a>
           </div>

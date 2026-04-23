@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/10001.webp"
-          alt=""
+          alt="Growvix digital agency team collaborating on a project"
           fill
           priority
           className="object-cover object-center"

@@ -30,6 +30,7 @@ export default function Ecosystem() {
       id="ecosystem"
       ref={sectionRef}
       className="py-14 md:py-20 bg-white text-slate-950"
+      aria-labelledby="ecosystem-heading"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-2 lg:px-0">
         <div className="flex justify-between gap-8 md:gap-20 flex-col md:flex-row">
@@ -38,6 +39,7 @@ export default function Ecosystem() {
             <h2
               className="text-3xl md:text-4xl lg:text-5xl text-gray-700 font-medium"
               data-animate
+              id="ecosystem-heading"
             >
               Our Ecosystem
             </h2>
@@ -49,14 +51,14 @@ export default function Ecosystem() {
               Together, we don’t just market brands—we engineer success at
               scale.
             </p>
-            <h1
+            <h3
               className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-600 mt-4 leading-[1.3] max-w-3xl"
               data-animate
             >
               To Push The Boundaries of Digital Marketing and Offer Brands a
               360° Growth Experience, We’ve Built a Powerful Ecosystem of
               Innovation, Strategy, and Technology.
-            </h1>
+            </h3>
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               <div data-animate className="">
                 <div className="items-center gap-4">

@@ -62,13 +62,50 @@ export default function CTA() {
               data-animate
               className="opacity-0 mt-6 flex flex-wrap items-center gap-4"
             >
-              <a
-                href="mailto:hello@growvix.com"
-                className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-sm font-semibold text-brand-purple transition hover:-translate-y-0.5"
+              <form
+                name="contact"
+                method="POST"
+                action="/thank-you"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                className="w-full max-w-md space-y-4"
               >
-                Contact Now
-                <ArrowRight className="h-4 w-4" />
-              </a>
+                <input type="hidden" name="form-name" value="contact" />
+                <div className="hidden">
+                  <label>
+                    Don&apos;t fill this out if you&apos;re human:{" "}
+                    <input name="bot-field" />
+                  </label>
+                </div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-white/40 focus:outline-none"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                  className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-white/40 focus:outline-none"
+                />
+                <textarea
+                  name="message"
+                  placeholder="Tell us about your project"
+                  rows={4}
+                  required
+                  className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-white/40 focus:outline-none resize-none"
+                ></textarea>
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-sm font-semibold text-brand-purple transition hover:-translate-y-0.5"
+                >
+                  Send Message
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
             </div>
 
             <div data-animate className="opacity-0 mt-12 space-y-4">
@@ -107,7 +144,6 @@ export default function CTA() {
                 width={900}
                 height={1125}
                 className="h-full w-full object-cover"
-                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
             </div>
