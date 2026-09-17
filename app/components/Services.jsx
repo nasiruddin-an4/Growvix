@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Reveal from "./motion/Reveal";
+import RevealGroup, { RevealItem } from "./motion/RevealGroup";
+import TiltCard from "./motion/TiltCard";
 
 const services = [
   {
@@ -91,96 +93,75 @@ const services = [
 ];
 
 export default function Services() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll("[data-animate]").forEach((el, i) => {
-              el.style.animationDelay = `${i * 0.1}s`;
-              el.classList.add("animate-fade-in-up");
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="py-24 md:py-32 bg-white relative"
-    >
+    <section id="services" className="py-24 md:py-32 bg-white relative">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div data-animate className="opacity-0">
+          <Reveal>
             <span className="section-label">Our Services</span>
-          </div>
-          <h2
-            data-animate
-            className="opacity-0 text-3xl sm:text-4xl lg:text-5xl font-bold mt-5 text-brand-indigo"
+          </Reveal>
+          <Reveal
+            as="h2"
+            delay={0.08}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-5 text-brand-indigo"
           >
             Everything You Need to
             <br />
             <span className="gradient-text">Scale Your Business</span>
-          </h2>
-          <p
-            data-animate
-            className="opacity-0 mt-5 text-lg text-text-secondary max-w-2xl mx-auto"
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={0.16}
+            className="mt-5 text-lg text-text-secondary max-w-2xl mx-auto"
           >
             We offer a comprehensive suite of digital services designed to accelerate your growth — from product development to market dominance.
-          </p>
+          </Reveal>
         </div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 perspective">
           {services.map((service) => (
-            <div
-              key={service.title}
-              data-animate
-              className="opacity-0 group relative bg-white rounded-2xl p-7 md:p-8 border border-border-subtle card-hover cursor-default"
-            >
-              {/* Gradient top border */}
-              <div
-                className={`absolute top-0 left-6 right-6 h-[3px] rounded-b-full bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
-
-              {/* Icon */}
-              <div
-                className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white mb-6 transition-transform duration-500 group-hover:scale-110`}
+            <RevealItem key={service.title}>
+              <TiltCard
+                max={7}
+                className="group relative h-full bg-white rounded-2xl p-7 md:p-8 border border-border-subtle card-hover cursor-default"
               >
-                {service.icon}
-              </div>
+                {/* Gradient top border */}
+                <div
+                  className={`absolute top-0 left-6 right-6 h-[3px] rounded-b-full bg-linear-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                />
 
-              <h3 className="text-xl font-bold text-brand-indigo mb-3">
-                {service.title}
-              </h3>
+                {/* Icon */}
+                <div
+                  className={`w-14 h-14 rounded-2xl bg-linear-to-br ${service.gradient} flex items-center justify-center text-white mb-6 transition-transform duration-500 group-hover:scale-110`}
+                >
+                  {service.icon}
+                </div>
 
-              <p className="text-text-secondary text-[0.95rem] leading-relaxed mb-5">
-                {service.description}
-              </p>
+                <h3 className="text-xl font-bold text-brand-indigo mb-3">
+                  {service.title}
+                </h3>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {service.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-medium px-3 py-1 rounded-full bg-surface-light text-text-secondary border border-border-subtle"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+                <p className="text-text-secondary text-[0.95rem] leading-relaxed mb-5">
+                  {service.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {service.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs font-medium px-3 py-1 rounded-full bg-surface-light text-text-secondary border border-border-subtle"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </TiltCard>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

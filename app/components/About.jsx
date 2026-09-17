@@ -1,28 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Reveal from "./motion/Reveal";
+import RevealGroup, { RevealItem } from "./motion/RevealGroup";
+import TiltCard from "./motion/TiltCard";
+import Parallax from "./motion/Parallax";
 
 export default function About() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll("[data-animate]").forEach((el, i) => {
-              el.style.animationDelay = `${i * 0.1}s`;
-              el.classList.add("animate-fade-in-up");
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   const values = [
     {
       icon: (
@@ -70,19 +53,24 @@ export default function About() {
   return (
     <section
       id="about"
-      ref={sectionRef}
       className="py-24 md:py-32 bg-surface-light relative overflow-hidden"
     >
-      {/* Subtle background accent */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#6a3dfc]/5 to-transparent blur-3xl" />
+      {/* Subtle background accent — drifts slower than scroll for depth */}
+      <Parallax
+        speed={-0.2}
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-linear-to-br from-[#6a3dfc]/5 to-transparent blur-3xl"
+      />
 
       <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left — Visual */}
-          <div data-animate className="opacity-0 relative">
+          <Reveal className="relative perspective">
             <div className="relative">
               {/* Main card */}
-              <div className="bg-white rounded-3xl p-10 shadow-lg border border-border-subtle">
+              <TiltCard
+                max={8}
+                className="bg-white rounded-3xl p-10 shadow-lg border border-border-subtle"
+              >
                 <div className="space-y-8">
                   {/* Experience counter */}
                   <div className="flex items-center gap-6">
@@ -115,61 +103,65 @@ export default function About() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
 
               {/* Floating accent */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-gradient-to-br from-brand-purple to-accent-cyan opacity-10 -z-10" />
-              <div className="absolute -top-4 -left-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-accent-pink to-brand-purple opacity-10 -z-10" />
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-linear-to-br from-brand-purple to-accent-cyan opacity-10 -z-10 animate-float" />
+              <div
+                className="absolute -top-4 -left-4 w-24 h-24 rounded-2xl bg-linear-to-br from-accent-pink to-brand-purple opacity-10 -z-10 animate-float"
+                style={{ animationDelay: "1.5s" }}
+              />
             </div>
-          </div>
+          </Reveal>
 
           {/* Right — Content */}
           <div>
-            <div data-animate className="opacity-0">
+            <Reveal>
               <span className="section-label">About Growvix</span>
-            </div>
+            </Reveal>
 
-            <h2
-              data-animate
-              className="opacity-0 text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mt-5 text-brand-indigo leading-tight"
+            <Reveal
+              as="h2"
+              delay={0.08}
+              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mt-5 text-brand-indigo leading-tight"
             >
               A Team Obsessed With
               <br />
               <span className="gradient-text">Your Growth</span>
-            </h2>
+            </Reveal>
 
-            <p
-              data-animate
-              className="opacity-0 mt-6 text-lg text-text-secondary leading-relaxed"
+            <Reveal
+              as="p"
+              delay={0.16}
+              className="mt-6 text-lg text-text-secondary leading-relaxed"
             >
               Growvix was founded with a single mission — to help businesses unlock their digital potential. We combine technical excellence with creative strategy to deliver solutions that don&apos;t just look great but drive real, measurable results.
-            </p>
+            </Reveal>
 
-            <p
-              data-animate
-              className="opacity-0 mt-4 text-text-secondary leading-relaxed"
+            <Reveal
+              as="p"
+              delay={0.22}
+              className="mt-4 text-text-secondary leading-relaxed"
             >
               Our team of developers, designers, and marketing strategists work together seamlessly to ensure every project we touch becomes a growth engine for our clients.
-            </p>
+            </Reveal>
 
             {/* Values Grid */}
-            <div className="grid sm:grid-cols-2 gap-5 mt-10">
+            <RevealGroup className="grid sm:grid-cols-2 gap-5 mt-10">
               {values.map((value) => (
-                <div
-                  key={value.title}
-                  data-animate
-                  className="opacity-0 flex gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300"
-                >
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-purple/10 to-accent-cyan/10 flex items-center justify-center text-brand-purple flex-shrink-0">
-                    {value.icon}
+                <RevealItem key={value.title}>
+                  <div className="flex gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
+                    <div className="w-11 h-11 rounded-xl bg-linear-to-br from-brand-purple/10 to-accent-cyan/10 flex items-center justify-center text-brand-purple flex-shrink-0">
+                      {value.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-brand-indigo text-[0.95rem]">{value.title}</h4>
+                      <p className="text-sm text-text-secondary mt-1">{value.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-brand-indigo text-[0.95rem]">{value.title}</h4>
-                    <p className="text-sm text-text-secondary mt-1">{value.desc}</p>
-                  </div>
-                </div>
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </div>
         </div>
       </div>

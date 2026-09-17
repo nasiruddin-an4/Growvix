@@ -1,67 +1,51 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowRight, Zap, ShieldCheck, Sparkles } from "lucide-react";
+import Reveal from "./motion/Reveal";
+import TiltCard from "./motion/TiltCard";
+import Parallax from "./motion/Parallax";
 
 export default function CTA() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll("[data-animate]").forEach((el, i) => {
-              el.style.animationDelay = `${i * 0.08}s`;
-              el.classList.add("animate-fade-in-up");
-            });
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
       id="contact"
-      ref={sectionRef}
-      className="relative overflow-hidden py-24 md:py-32 bg-[#0d18ff] text-white"
+      className="relative overflow-hidden py-16 sm:py-20 md:py-28 lg:py-32 bg-[#0d18ff] text-white"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f1eff] via-[#1226ff] to-[#0b10b8] opacity-95" />
-      <div className="absolute left-0 top-10 h-80 w-80 rounded-full bg-white/8 blur-3xl" />
-      <div className="absolute right-0 bottom-24 h-72 w-72 rounded-full bg-[#8b7cff]/20 blur-3xl" />
+      <div className="absolute inset-0 bg-linear-to-br from-[#0f1eff] via-[#1226ff] to-[#0b10b8] opacity-95" />
+      <Parallax
+        speed={-0.2}
+        className="absolute left-0 top-10 h-80 w-80 rounded-full bg-white/8 blur-3xl"
+      />
+      <Parallax
+        speed={0.2}
+        className="absolute right-0 bottom-24 h-72 w-72 rounded-full bg-[#8b7cff]/20 blur-3xl"
+      />
       <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_40%)]" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 md:px-8 lg:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-8">
-            <div data-animate className="opacity-0">
+            <Reveal>
               <p className="text-sm uppercase tracking-[0.35em] text-white/70">
                 Ready To Scale Your Brand?
               </p>
-            </div>
+            </Reveal>
 
-            <div data-animate className="opacity-0">
+            <Reveal delay={0.08}>
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-semibold leading-tight tracking-tight">
                 Let&apos;s Build Something Extraordinary.
               </h2>
-            </div>
+            </Reveal>
 
-            <div data-animate className="opacity-0">
+            <Reveal delay={0.16}>
               <p className="max-w-xl text-lg leading-8 text-white/80">
                 Growvix brings the strategy, design, and execution your brand
                 needs to capture attention, convert customers, and grow with
                 confidence.
               </p>
-            </div>
+            </Reveal>
 
-            <div
-              data-animate
-              className="opacity-0 mt-6 flex flex-wrap items-center gap-4"
-            >
+            <Reveal delay={0.24} className="mt-6 flex flex-wrap items-center gap-4">
               <form
                 name="contact"
                 method="POST"
@@ -106,9 +90,9 @@ export default function CTA() {
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </form>
-            </div>
+            </Reveal>
 
-            <div data-animate className="opacity-0 mt-12 space-y-4">
+            <Reveal delay={0.32} className="mt-12 space-y-4">
               <p className="text-xs uppercase tracking-[0.25em] text-white/60">
                 Trusted by 300,000+ businesses:
               </p>
@@ -130,34 +114,46 @@ export default function CTA() {
                   CoreOS
                 </span>
               </div>
-            </div>
+            </Reveal>
           </div>
 
-          <div
-            data-animate
-            className="relative opacity-0 mx-auto w-full max-w-[520px]"
+          <Reveal
+            delay={0.1}
+            y={50}
+            className="relative mx-auto w-full max-w-[520px] perspective"
           >
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_45px_120px_rgba(0,0,0,0.25)]">
-              <Image
-                src="/img2.webp"
-                alt="Business growth"
-                width={900}
-                height={1125}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
-            </div>
+            <Parallax speed={0.1}>
+              <TiltCard
+                max={7}
+                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_45px_120px_rgba(0,0,0,0.25)]"
+              >
+                <Image
+                  src="/img2.webp"
+                  alt="Business growth"
+                  width={900}
+                  height={1125}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/40 via-transparent to-transparent" />
+              </TiltCard>
+            </Parallax>
 
-            <div className="absolute -top-5 left-5 flex h-16 w-16 items-center justify-center rounded-full bg-white text-brand-purple shadow-lg shadow-white/15">
+            <div className="absolute -top-5 left-5 flex h-16 w-16 items-center justify-center rounded-full bg-white text-brand-purple shadow-lg shadow-white/15 animate-float">
               <Zap className="h-6 w-6" />
             </div>
-            <div className="absolute -bottom-5 right-5 flex h-16 w-16 items-center justify-center rounded-full bg-white text-brand-purple shadow-lg shadow-white/15">
+            <div
+              className="absolute -bottom-5 right-5 flex h-16 w-16 items-center justify-center rounded-full bg-white text-brand-purple shadow-lg shadow-white/15 animate-float"
+              style={{ animationDelay: "1s" }}
+            >
               <ShieldCheck className="h-6 w-6" />
             </div>
-            <div className="absolute bottom-10 left-8 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand-purple shadow-xl shadow-brand-purple/20">
+            <div
+              className="absolute bottom-10 left-8 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand-purple shadow-xl shadow-brand-purple/20 animate-float"
+              style={{ animationDelay: "2s" }}
+            >
               <Sparkles className="h-5 w-5" />
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

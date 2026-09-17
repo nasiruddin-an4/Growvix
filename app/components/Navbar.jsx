@@ -84,7 +84,7 @@ export default function Navbar() {
           className="hidden md:inline-flex items-center gap-2.5 pl-5 pr-6 py-2.5 rounded-full border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-all duration-300"
         >
           {/* Small avatar circle */}
-          <span className="w-7 h-7 rounded-full bg-gradient-to-br from-[#6a3dfc] to-[#ff4d4d] flex items-center justify-center text-[10px] font-bold text-white">
+          <span className="w-7 h-7 rounded-full bg-linear-to-br from-[#6a3dfc] to-[#ff4d4d] flex items-center justify-center text-[10px] font-bold text-white">
             G
           </span>
           Book A Call

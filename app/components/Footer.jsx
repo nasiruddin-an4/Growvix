@@ -68,7 +68,7 @@ export default function Footer() {
       }}
     >
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#6a3dfc]/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#6a3dfc]/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-16 border-b border-white/[0.06]">

@@ -15,8 +15,8 @@ export default function Home() {
     name: "Growvix",
     description:
       "Leading global multiple solutions provider specializing in web development, mobile apps, SaaS, SEO, and digital marketing.",
-    url: "https://growvix.com",
-    logo: "https://growvix.com/logo/full_white_logo.svg",
+    url: "https://growvixbd.com",
+    logo: "https://growvixbd.com/logo/full_white_logo.svg",
     sameAs: [
       "https://facebook.com/growvix", // Replace with actual
       "https://linkedin.com/company/growvix", // Replace with actual
@@ -27,7 +27,7 @@ export default function Home() {
       "@type": "ContactPoint",
       telephone: "+1-234-567-890", // Replace with real number
       contactType: "customer service",
-      email: "hello@growvix.com",
+      email: "[EMAIL_ADDRESS]",
     },
     address: {
       "@type": "PostalAddress",
@@ -43,12 +43,12 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Growvix",
-    url: "https://growvix.com",
+    url: "https://growvixbd.com",
     description:
       "Leading global multiple solutions provider specializing in web development, mobile apps, SaaS, SEO, and digital marketing.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://growvix.com/search?q={search_term_string}",
+      target: "https://growvixbd.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };

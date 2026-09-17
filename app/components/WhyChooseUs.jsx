@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Reveal from "./motion/Reveal";
+import RevealGroup, { RevealItem } from "./motion/RevealGroup";
+import TiltCard from "./motion/TiltCard";
+import Parallax from "./motion/Parallax";
 
 const reasons = [
   {
@@ -65,88 +68,74 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll("[data-animate]").forEach((el, i) => {
-              el.style.animationDelay = `${i * 0.08}s`;
-              el.classList.add("animate-fade-in-up");
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       className="py-24 md:py-32 relative overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #0f0522 0%, #1a0e3f 50%, #0f0522 100%)",
       }}
     >
-      {/* Decorative */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[#6a3dfc]/5 blur-3xl" />
+      {/* Decorative — drifts opposite scroll for depth */}
+      <Parallax
+        speed={0.25}
+        zoom
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[#6a3dfc]/5 blur-3xl"
+      />
 
       <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div data-animate className="opacity-0">
+          <Reveal>
             <span className="section-label section-label-dark">Why Growvix</span>
-          </div>
-          <h2
-            data-animate
-            className="opacity-0 text-3xl sm:text-4xl lg:text-5xl font-bold mt-5 text-white"
+          </Reveal>
+          <Reveal
+            as="h2"
+            delay={0.08}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-5 text-white"
           >
             Why Businesses
             <br />
             <span className="gradient-text">Choose Us</span>
-          </h2>
-          <p
-            data-animate
-            className="opacity-0 mt-5 text-lg text-text-on-dark-muted max-w-2xl mx-auto"
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={0.16}
+            className="mt-5 text-lg text-text-on-dark-muted max-w-2xl mx-auto"
           >
             We don&apos;t just build — we partner with you to create digital
             experiences that drive real business outcomes.
-          </p>
+          </Reveal>
         </div>
 
         {/* Reasons Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 perspective">
           {reasons.map((reason, index) => (
-            <div
-              key={reason.title}
-              data-animate
-              className="opacity-0 group relative rounded-2xl p-7 md:p-8 border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
-            >
-              {/* Index number */}
-              <span className="absolute top-6 right-6 text-5xl font-black text-white/[0.04] select-none">
-                0{index + 1}
-              </span>
+            <RevealItem key={reason.title}>
+              <TiltCard
+                max={6}
+                className="group relative h-full rounded-2xl p-7 md:p-8 border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
+              >
+                {/* Index number */}
+                <span className="absolute top-6 right-6 text-5xl font-black text-white/[0.04] select-none">
+                  0{index + 1}
+                </span>
 
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#6a3dfc]/20 to-[#00d4ff]/20 flex items-center justify-center text-brand-purple-light mb-6 group-hover:scale-110 transition-transform duration-500">
-                {reason.icon}
-              </div>
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#6a3dfc]/20 to-[#00d4ff]/20 flex items-center justify-center text-brand-purple-light mb-6 group-hover:scale-110 transition-transform duration-500">
+                  {reason.icon}
+                </div>
 
-              <h3 className="text-xl font-bold text-white mb-3">
-                {reason.title}
-              </h3>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {reason.title}
+                </h3>
 
-              <p className="text-text-on-dark-muted text-[0.95rem] leading-relaxed">
-                {reason.description}
-              </p>
-            </div>
+                <p className="text-text-on-dark-muted text-[0.95rem] leading-relaxed">
+                  {reason.description}
+                </p>
+              </TiltCard>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );
