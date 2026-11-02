@@ -1,141 +1,117 @@
 "use client";
 
+import {
+  BarChart3,
+  CheckCircle2,
+  Clock,
+  Headphones,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import Reveal from "./motion/Reveal";
 import RevealGroup, { RevealItem } from "./motion/RevealGroup";
 import TiltCard from "./motion/TiltCard";
-import Parallax from "./motion/Parallax";
 
 const reasons = [
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-    title: "Fast Turnaround",
-    description: "We deliver on time, every time. Our agile workflows ensure rapid development without compromising quality.",
+    icon: Clock,
+    title: "Fast turnaround",
+    description:
+      "We deliver on time, every time. Agile workflows keep things moving without cutting corners.",
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    title: "Battle-Tested Code",
-    description: "Enterprise-grade development practices with thorough testing, code reviews, and security best practices.",
+    icon: ShieldCheck,
+    title: "Battle-tested code",
+    description:
+      "Thorough testing, code reviews and security best practices on every release.",
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    ),
-    title: "Proven Results",
-    description: "Our clients see an average of 200%+ ROI. We focus on metrics that matter and strategies that convert.",
+    icon: CheckCircle2,
+    title: "Proven results",
+    description:
+      "Clients see an average ROI above 200%. We focus on the metrics that matter.",
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 00-3-3.87" />
-        <path d="M16 3.13a4 4 0 010 7.75" />
-      </svg>
-    ),
-    title: "Dedicated Team",
-    description: "Get a dedicated team of experts who understand your business goals and work as an extension of your team.",
+    icon: Users,
+    title: "Dedicated team",
+    description:
+      "Experts who learn your business and work as an extension of your own team.",
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-    title: "Data-Driven Strategy",
-    description: "Every decision backed by analytics. We use real data to optimize performance and maximize your investment.",
+    icon: BarChart3,
+    title: "Data-driven strategy",
+    description:
+      "Every decision is backed by analytics, so your budget goes where it performs.",
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-      </svg>
-    ),
-    title: "24/7 Support",
-    description: "Round-the-clock support and maintenance. We don't disappear after launch — we grow with you.",
+    icon: Headphones,
+    title: "24/7 support",
+    description:
+      "We don't disappear after launch. Round-the-clock support as you grow.",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section
-      className="py-24 md:py-32 relative overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #0f0522 0%, #1a0e3f 50%, #0f0522 100%)",
-      }}
-    >
-      {/* Decorative — drifts opposite scroll for depth */}
-      <Parallax
-        speed={0.25}
-        zoom
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[#6a3dfc]/5 blur-3xl"
-      />
+    <section id="why-growvix" className="relative py-16 sm:py-24">
+      <div className="container-x">
+        <div className="relative overflow-hidden rounded-[24px] border border-white bg-[linear-gradient(170deg,#FFF7EF_0%,#F3F0FF_60%,#EEF0FA_100%)] px-4 py-8 shadow-[0_14px_36px_rgba(60,42,20,0.08)] sm:rounded-[32px] sm:p-10 lg:p-14">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-0 h-[60%] w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(241,98,34,0.14),rgba(106,61,252,0.08),transparent)] blur-2xl"
+          />
+          <div className="relative mx-auto max-w-[720px] text-center">
+            <Reveal as="p" rotate={0} className="eyebrow">
+              Why Growvix
+            </Reveal>
+            <Reveal
+              as="h2"
+              delay={0.06}
+              className="display mt-3 text-[28px] font-semibold leading-[1.1] text-ink sm:text-[48px] sm:leading-[1.08]"
+            >
+              We do the heavy lifting.
+              <br />
+              <span className="accent">You make the calls.</span>
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={0.12}
+              rotate={0}
+              className="mt-3 text-[15px] leading-[24px] text-ink-soft sm:mt-4 sm:text-[17px] sm:leading-[27px]"
+            >
+              We partner with you to create digital experiences that drive real
+              business outcomes, not just deliverables.
+            </Reveal>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <Reveal>
-            <span className="section-label section-label-dark">Why Growvix</span>
-          </Reveal>
-          <Reveal
-            as="h2"
-            delay={0.08}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-5 text-white"
-          >
-            Why Businesses
-            <br />
-            <span className="gradient-text">Choose Us</span>
-          </Reveal>
-          <Reveal
-            as="p"
-            delay={0.16}
-            className="mt-5 text-lg text-text-on-dark-muted max-w-2xl mx-auto"
-          >
-            We don&apos;t just build — we partner with you to create digital
-            experiences that drive real business outcomes.
-          </Reveal>
+          <RevealGroup className="relative mt-8 grid gap-2.5 sm:mt-12 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
+            {reasons.map(({ icon: Icon, title, description }, i) => (
+              <RevealItem key={title} className="h-full">
+                <TiltCard max={5} scale={1.01} className="glass h-full !rounded-[18px] p-4 sm:!rounded-[22px] sm:p-6">
+                  {/* Phones: icon beside the text in a compact row. Larger screens: stacked card. */}
+                  <div className="flex items-start gap-3.5 sm:block">
+                    <div className="flex shrink-0 items-center justify-between">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-signal-tint text-[#D84E12] sm:h-11 sm:w-11">
+                        <Icon className="h-5 w-5" strokeWidth={1.75} />
+                      </span>
+                      <span className="mono hidden text-[12px] text-ink-faint sm:inline">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="display text-[17px] font-semibold leading-[1.25] text-ink sm:mt-5 sm:text-[20px]">
+                        {title}
+                      </h3>
+                      <p className="mt-1 text-[14px] leading-[21px] text-ink-soft sm:mt-2 sm:text-[15px] sm:leading-[23px]">
+                        {description}
+                      </p>
+                    </div>
+                  </div>
+                </TiltCard>
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
-
-        {/* Reasons Grid */}
-        <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 perspective">
-          {reasons.map((reason, index) => (
-            <RevealItem key={reason.title}>
-              <TiltCard
-                max={6}
-                className="group relative h-full rounded-2xl p-7 md:p-8 border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500"
-              >
-                {/* Index number */}
-                <span className="absolute top-6 right-6 text-5xl font-black text-white/[0.04] select-none">
-                  0{index + 1}
-                </span>
-
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-[#6a3dfc]/20 to-[#00d4ff]/20 flex items-center justify-center text-brand-purple-light mb-6 group-hover:scale-110 transition-transform duration-500">
-                  {reason.icon}
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {reason.title}
-                </h3>
-
-                <p className="text-text-on-dark-muted text-[0.95rem] leading-relaxed">
-                  {reason.description}
-                </p>
-              </TiltCard>
-            </RevealItem>
-          ))}
-        </RevealGroup>
       </div>
     </section>
   );

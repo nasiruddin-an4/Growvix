@@ -1,63 +1,67 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { Outfit } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
+import { SITE_URL, site } from "./lib/site";
 
 const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-outfit",
 });
 
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains",
+});
+
+export const viewport = {
+  themeColor: "#fbf8f4",
+};
+
 export const metadata = {
-  metadataBase: new URL("https://growvix.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Growvix - Leading Global Multiple Solutions Provider",
+    default: site.title,
     template: "%s | Growvix",
   },
-  description:
-    "Growvix is a leading global multiple solutions provider that helps businesses and individuals achieve their goals through web development, mobile apps, SaaS, SEO, and digital marketing.",
+  description: site.description,
+  applicationName: site.name,
   keywords: [
-    "digital agency",
-    "web development",
-    "mobile app development",
-    "SaaS development",
-    "SEO services",
-    "content marketing",
-    "Facebook ads",
-    "brand strategy",
-    "digital marketing",
-    "software development",
+    "Growvix",
+    "digital agency Bangladesh",
+    "web development company Dhaka",
+    "website design Bangladesh",
+    "mobile app development Bangladesh",
+    "SaaS development company",
+    "Next.js developer Bangladesh",
+    "SEO agency Dhaka",
+    "SEO services Bangladesh",
+    "Facebook ads agency Bangladesh",
+    "Google ads agency",
+    "digital marketing agency Dhaka",
+    "brand strategy and UI/UX design",
   ],
-  authors: [{ name: "Growvix Team" }],
-  creator: "Growvix",
-  publisher: "Growvix",
+  authors: [{ name: site.name, url: SITE_URL }],
+  creator: site.name,
+  publisher: site.name,
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Growvix - Leading Global Multiple Solutions Provider",
-    description:
-      "Growvix is a leading global multiple solutions provider that helps businesses and individuals achieve their goals through web development, mobile apps, SaaS, SEO, and digital marketing.",
-    url: "https://growvix.com",
-    siteName: "Growvix",
-    images: [
-      {
-        url: "/opengraph-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Growvix - Digital Agency Services",
-      },
-    ],
-    locale: "en_US",
     type: "website",
+    url: "/",
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    locale: site.locale,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Growvix - Leading Global Multiple Solutions Provider",
-    description:
-      "Growvix is a leading global multiple solutions provider that helps businesses and individuals achieve their goals through web development, mobile apps, SaaS, SEO, and digital marketing.",
-    images: ["/twitter-image.jpg"],
-    creator: "@growvix", // Replace with actual Twitter handle
-  },
-  alternates: {
-    canonical: "https://growvix.com",
+    title: site.title,
+    description: site.description,
   },
   robots: {
     index: true,
@@ -77,19 +81,37 @@ export const metadata = {
     ],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
+  /* Set these in your hosting environment once you verify the site in each console */
   verification: {
-    google: "your-google-site-verification-code", // Replace with actual code
-    bing: "your-bing-verification-code", // Replace with actual code
-    yandex: "your-yandex-verification-code", // Replace with actual code
-    pinterest: "your-pinterest-verification-code", // Replace with actual code
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    }),
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION && {
+      other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION },
+    }),
+  },
+  /* Local search signals for Dhaka, Bangladesh */
+  other: {
+    "geo.region": "BD-13",
+    "geo.placename": "Dhanmondi, Dhaka",
+    "geo.position": `${site.geo.latitude};${site.geo.longitude}`,
+    ICBM: `${site.geo.latitude}, ${site.geo.longitude}`,
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${outfit.variable} ${jetbrains.variable} h-full antialiased`}
+    >
       <body
-        className={`${outfit.className} min-h-full flex flex-col`}
+        className={`${outfit.className} min-h-full flex flex-col bg-canvas text-ink`}
         suppressHydrationWarning
       >
         <Navbar />

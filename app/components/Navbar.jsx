@@ -1,34 +1,123 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, ArrowUpRight, Mail, Menu, X } from "lucide-react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useMotionTemplate,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 const navLinks = [
-  { label: "Home", href: "#home", active: true },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/#portfolio" },
+  { label: "About", href: "/#about" },
+  { label: "Stories", href: "/#testimonials" },
 ];
 
+/* Scroll distance (px) over which the bar shrinks from container width to the pill */
+const MORPH_DISTANCE = 120;
+/* Widest the compact pill gets on large screens */
+const PILL_MAX = 1120;
+/* Matches .container-x in globals.css */
+const CONTAINER_MAX = 1280;
+
+const lerp = (a, b, t) => a + (b - a) * t;
+
+function containerPad(vw) {
+  if (vw >= 1024) return 32;
+  if (vw >= 640) return 24;
+  return 16;
+}
+
+/* Width of the page container's content box, so the bar lines up with the sections below */
+function containerWidth(vw) {
+  return Math.min(vw, CONTAINER_MAX) - containerPad(vw) * 2;
+}
+
+/* Compact width once scrolled: noticeably narrower, but never wider than the container */
+function pillWidth(vw) {
+  const full = containerWidth(vw);
+  return Math.min(PILL_MAX, full - (vw >= 640 ? 32 : 8));
+}
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  /* Viewport width, kept as a motion value so the morph can read it without re-rendering */
+  const vw = useMotionValue(CONTAINER_MAX);
 
+
+  /* 0 = top of page (full-width bar), 1 = scrolled (compact pill) */
+  const { scrollY } = useScroll();
+  const raw = useTransform(scrollY, [0, MORPH_DISTANCE], [0, 1], { clamp: true });
+  const spring = reduceMotion
+    ? { stiffness: 1000, damping: 100, mass: 0.1 }
+    : { stiffness: 220, damping: 32, mass: 0.6 };
+  const smooth = useSpring(raw, spring);
+
+  const progress = smooth;
+
+  /* Close the drawer with the Escape key */
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setMobileOpen(false);
+    if (!mobileOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMobileOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
+  /* Full screen width at the top of the page, shrinking to the pill as you scroll */
+  const width = useTransform([progress, vw], ([p, w]) => lerp(w, pillWidth(w), p));
+
+  const top = useTransform([progress, vw], ([p, w]) => lerp(0, w >= 640 ? 10 : 8, p));
+  const radius = useTransform(progress, [0, 1], [0, 12]); // 12px = Tailwind rounded-xl
+  const height = useTransform(progress, [0, 1], [72, 62]);
+
+  /* At the top the content lines up with the page container; in the pill it hugs the edges */
+  const padX = useTransform([progress, vw], ([p, w]) =>
+    lerp((w - containerWidth(w)) / 2, w >= 640 ? 12 : 10, p),
+  );
+
+  /* Top: soft warm white with a hairline along the bottom only. Scrolled: white glass pill. */
+  const background = useTransform(
+    progress,
+    [0, 1],
+    ["rgba(255, 250, 245, 0.88)", "rgba(255, 255, 255, 0.78)"],
+  );
+  const borderBottomColor = useTransform(
+    progress,
+    [0, 1],
+    ["rgba(38, 45, 108, 0.08)", "rgba(255, 255, 255, 0.9)"],
+  );
+  const borderEdgeColor = useTransform(
+    progress,
+    [0, 1],
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.9)"],
+  );
+  const shadowAlpha = useTransform(progress, [0, 1], [0.05, 0.3]);
+  const blur = useTransform(progress, [0, 1], [14, 20]);
+
+  /* Runs after the transforms above subscribe to `vw`, so the first measurement reaches them */
+  useLayoutEffect(() => {
+    const update = () => {
+      vw.set(document.documentElement.clientWidth);
+      if (window.innerWidth >= 1024) setMobileOpen(false);
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [vw]);
+
+  const boxShadow = useMotionTemplate`0 12px 30px -16px rgba(22, 25, 40, ${shadowAlpha})`;
+  const backdropFilter = useMotionTemplate`blur(${blur}px) saturate(140%)`;
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -38,145 +127,169 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header
+    <motion.header
       id="navbar"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "py-4 bg-brand-purple backdrop-blur-xl"
-          : "py-6 bg-transparent"
-      }`}
+      style={{ paddingTop: top }}
+      className="fixed inset-x-0 top-0 z-50"
     >
-      <div className="container mx-auto px-4 md:px-10 flex items-center justify-between">
-        {/* Logo */}
+      <motion.div
+        style={{
+          width,
+          height,
+          paddingLeft: padX,
+          paddingRight: padX,
+          borderRadius: radius,
+          background,
+          borderTopColor: borderEdgeColor,
+          borderLeftColor: borderEdgeColor,
+          borderRightColor: borderEdgeColor,
+          borderBottomColor,
+          boxShadow,
+          backdropFilter,
+          WebkitBackdropFilter: backdropFilter,
+        }}
+        className="relative mx-auto flex max-w-full items-center justify-between border"
+      >
         <Link
-          href="#home"
-          className="relative z-50 flex items-center gap-2"
+          href="/"
+          className="relative z-10 flex items-center"
           aria-label="Growvix home"
         >
           <Image
-            src="/logo/full_white_logo.svg"
-            alt="Growvix Logo"
+            src="/logo/full_logo.svg"
+            alt="Growvix"
             width={130}
-            height={36}
+            height={33}
             priority
-            className="h-8 md:h-10 w-auto"
+            className="h-7 w-auto sm:h-8"
           />
         </Link>
 
-        {/* Desktop Nav — Center */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav
+          aria-label="Main"
+          className="absolute inset-y-0 left-1/2 hidden -translate-x-1/2 items-center gap-1 text-[17px] font-medium text-ink/75 lg:flex"
+        >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className={`relative px-5 py-2 text-xl font-medium rounded-lg transition-all duration-300 ${
-                link.active ? "text-white" : "text-white/80 hover:text-white"
-              }`}
+              className="rounded-full px-4 py-2 transition-colors hover:bg-ink/5 hover:text-ink"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA — Right */}
-        <a
-          href="#contact"
-          className="hidden md:inline-flex items-center gap-2.5 pl-5 pr-6 py-2.5 rounded-full border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-all duration-300"
-        >
-          {/* Small avatar circle */}
-          <span className="w-7 h-7 rounded-full bg-linear-to-br from-[#6a3dfc] to-[#ff4d4d] flex items-center justify-center text-[10px] font-bold text-white">
-            G
-          </span>
-          Book A Call
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="opacity-70"
+        <div className="relative z-10 flex items-center gap-2">
+          <Link
+            href="/#contact"
+            className="btn-signal hidden h-11 px-5 text-[15px] sm:inline-flex"
           >
-            <path d="M7 17L17 7M17 7H7M17 7v10" />
-          </svg>
-        </a>
+            Book a call
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="flex h-11 w-11 items-center justify-center rounded-xl text-ink transition-colors hover:bg-ink/5 lg:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </motion.div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-xl border border-white/20 transition-colors"
-          aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-menu"
-        >
-          <div className="w-5 h-4 flex flex-col justify-between">
-            <span
-              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${
-                mobileOpen ? "rotate-45 translate-y-[7px]" : ""
-              }`}
-            />
-            <span
-              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${
-                mobileOpen ? "opacity-0 scale-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-[2px] bg-white rounded-full transition-all duration-300 ${
-                mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""
-              }`}
-            />
-          </div>
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        id="mobile-menu"
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
-          mobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        style={{
-          background: "linear-gradient(180deg, #0a0318 0%, #1a0e3f 100%)",
-        }}
-      >
-        <nav className="flex flex-col items-center gap-2">
-          {navLinks.map((link, i) => (
-            <a
-              key={link.href}
-              href={link.href}
+      {/* Mobile drawer — slides in from the right at 80% of the screen width */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              key="backdrop"
+              aria-hidden="true"
               onClick={() => setMobileOpen(false)}
-              className={`text-2xl font-semibold py-3 px-8 rounded-2xl transition-all duration-300 ${
-                link.active
-                  ? "text-brand-purple"
-                  : "text-white/80 hover:text-white"
-              }`}
-              style={{
-                animation: mobileOpen
-                  ? `fadeInUp 0.5s ${i * 0.08}s forwards`
-                  : "none",
-                opacity: mobileOpen ? undefined : 0,
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-[60] bg-ink/40 backdrop-blur-[2px] lg:hidden"
+            />
+            <motion.aside
+              key="drawer"
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : { type: "spring", stiffness: 320, damping: 34, mass: 0.8 }
+              }
+              className="fixed inset-y-0 right-0 z-[61] flex h-[100dvh] w-[80%] flex-col rounded-l-[28px] border-l border-white bg-[#FFFCF8] shadow-[-24px_0_60px_-20px_rgba(22,25,40,0.35)] lg:hidden"
             >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <a
-          href="#contact"
-          onClick={() => setMobileOpen(false)}
-          className="mt-8 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full border border-white/20 text-white font-semibold hover:bg-white/10 transition-all duration-300"
-          style={{
-            animation: mobileOpen ? "fadeInUp 0.5s 0.4s forwards" : "none",
-            opacity: mobileOpen ? undefined : 0,
-          }}
-        >
-          Book A Call
-        </a>
-      </div>
-    </header>
+              <div className="flex items-center justify-between px-5 pb-2 pt-5">
+                <Image
+                  src="/logo/full_logo.svg"
+                  alt="Growvix"
+                  width={120}
+                  height={30}
+                  className="h-7 w-auto"
+                />
+                <button
+                  type="button"
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Close menu"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-ink/5 text-ink transition-colors hover:bg-ink/10"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <nav aria-label="Mobile" className="mt-4 flex flex-col px-3">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={reduceMotion ? false : { opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="group flex items-center justify-between rounded-2xl px-3 py-4 text-[22px] font-medium tracking-[-0.01em] text-ink transition-colors hover:bg-ink/5"
+                    >
+                      {link.label}
+                      <ArrowUpRight className="h-5 w-5 text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
+              <div className="mt-auto space-y-3 border-t border-ink/5 p-5">
+                <Link
+                  href="/#contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="btn-signal h-12 w-full px-5 text-[16px]"
+                >
+                  Book a call
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="mailto:growvixbd@gmail.com"
+                  className="flex items-center justify-center gap-2 text-[14px] text-ink-soft hover:text-ink"
+                >
+                  <Mail className="h-4 w-4" />
+                  growvixbd@gmail.com
+                </a>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

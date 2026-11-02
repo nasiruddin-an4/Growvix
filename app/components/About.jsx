@@ -1,170 +1,132 @@
 "use client";
 
+import { Award } from "lucide-react";
 import Reveal from "./motion/Reveal";
 import RevealGroup, { RevealItem } from "./motion/RevealGroup";
 import TiltCard from "./motion/TiltCard";
-import Parallax from "./motion/Parallax";
+
+const values = [
+  {
+    title: "Innovation first",
+    desc: "We stay ahead of technology trends to give you a competitive edge.",
+  },
+  {
+    title: "Client partnership",
+    desc: "Your success is our success. We build long-term relationships.",
+  },
+  {
+    title: "Results driven",
+    desc: "Every decision is backed by data and measured by outcomes.",
+  },
+  {
+    title: "Quality and security",
+    desc: "Enterprise-grade code with security best practices built in.",
+  },
+];
+
+const quickStats = [
+  { value: "50+", label: "Projects completed" },
+  { value: "30+", label: "Happy clients" },
+  { value: "15+", label: "Team members" },
+  { value: "8+", label: "Countries served" },
+];
+
+const disciplines = [
+  { tag: "01", label: "Strategy", cls: "bg-teal-tint text-teal-ink" },
+  { tag: "02", label: "Design", cls: "bg-[#EEF0FA] text-navy" },
+  { tag: "03", label: "Engineering", cls: "bg-violet-tint text-violet-ink" },
+  { tag: "04", label: "Marketing", cls: "bg-signal-tint text-[#B33D0E]" },
+];
 
 export default function About() {
-  const values = [
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5z" />
-          <path d="M2 17l10 5 10-5" />
-          <path d="M2 12l10 5 10-5" />
-        </svg>
-      ),
-      title: "Innovation First",
-      desc: "We stay ahead of tech trends to give you a competitive edge.",
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 00-3-3.87" />
-          <path d="M16 3.13a4 4 0 010 7.75" />
-        </svg>
-      ),
-      title: "Client Partnership",
-      desc: "Your success is our success. We build long-term relationships.",
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-        </svg>
-      ),
-      title: "Results Driven",
-      desc: "Every decision is backed by data and measured by outcomes.",
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      ),
-      title: "Quality & Security",
-      desc: "Enterprise-grade code with security best practices baked in.",
-    },
-  ];
-
   return (
     <section
       id="about"
-      className="py-24 md:py-32 bg-surface-light relative overflow-hidden"
+      className="container-x grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16 lg:py-28"
     >
-      {/* Subtle background accent — drifts slower than scroll for depth */}
-      <Parallax
-        speed={-0.2}
-        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-linear-to-br from-[#6a3dfc]/5 to-transparent blur-3xl"
-      />
+      <div>
+        <Reveal as="p" rotate={0} className="eyebrow">
+          About Growvix
+        </Reveal>
+        <Reveal
+          as="h2"
+          delay={0.06}
+          className="display mt-3 text-[34px] font-semibold leading-[1.08] text-ink sm:text-[48px]"
+        >
+          A team obsessed
+          <br />
+          <span className="accent">with your growth.</span>
+        </Reveal>
+        <Reveal
+          as="p"
+          delay={0.1}
+          rotate={0}
+          className="mt-5 max-w-[560px] text-[17px] leading-[27px] text-ink-soft"
+        >
+          Growvix was founded to help businesses unlock their digital
+          potential. Developers, designers and marketing strategists work as one
+          team, so every project becomes a growth engine.
+        </Reveal>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left — Visual */}
-          <Reveal className="relative perspective">
-            <div className="relative">
-              {/* Main card */}
-              <TiltCard
-                max={8}
-                className="bg-white rounded-3xl p-10 shadow-lg border border-border-subtle"
-              >
-                <div className="space-y-8">
-                  {/* Experience counter */}
-                  <div className="flex items-center gap-6">
-                    <div className="text-6xl font-bold gradient-text">5+</div>
-                    <div>
-                      <p className="text-lg font-semibold text-brand-indigo">Years of Excellence</p>
-                      <p className="text-text-secondary text-sm">Building digital solutions since 2021</p>
-                    </div>
-                  </div>
-
-                  <div className="h-px bg-border-light" />
-
-                  {/* Quick stats */}
-                  <div className="grid grid-cols-2 gap-6">
-                    <div>
-                      <p className="text-3xl font-bold text-brand-indigo">50+</p>
-                      <p className="text-sm text-text-secondary mt-1">Projects Completed</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-brand-indigo">30+</p>
-                      <p className="text-sm text-text-secondary mt-1">Happy Clients</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-brand-indigo">15+</p>
-                      <p className="text-sm text-text-secondary mt-1">Team Members</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-brand-indigo">8+</p>
-                      <p className="text-sm text-text-secondary mt-1">Countries Served</p>
-                    </div>
-                  </div>
-                </div>
-              </TiltCard>
-
-              {/* Floating accent */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-linear-to-br from-brand-purple to-accent-cyan opacity-10 -z-10 animate-float" />
-              <div
-                className="absolute -top-4 -left-4 w-24 h-24 rounded-2xl bg-linear-to-br from-accent-pink to-brand-purple opacity-10 -z-10 animate-float"
-                style={{ animationDelay: "1.5s" }}
-              />
-            </div>
-          </Reveal>
-
-          {/* Right — Content */}
-          <div>
-            <Reveal>
-              <span className="section-label">About Growvix</span>
-            </Reveal>
-
-            <Reveal
-              as="h2"
-              delay={0.08}
-              className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mt-5 text-brand-indigo leading-tight"
-            >
-              A Team Obsessed With
-              <br />
-              <span className="gradient-text">Your Growth</span>
-            </Reveal>
-
-            <Reveal
-              as="p"
-              delay={0.16}
-              className="mt-6 text-lg text-text-secondary leading-relaxed"
-            >
-              Growvix was founded with a single mission — to help businesses unlock their digital potential. We combine technical excellence with creative strategy to deliver solutions that don&apos;t just look great but drive real, measurable results.
-            </Reveal>
-
-            <Reveal
-              as="p"
-              delay={0.22}
-              className="mt-4 text-text-secondary leading-relaxed"
-            >
-              Our team of developers, designers, and marketing strategists work together seamlessly to ensure every project we touch becomes a growth engine for our clients.
-            </Reveal>
-
-            {/* Values Grid */}
-            <RevealGroup className="grid sm:grid-cols-2 gap-5 mt-10">
-              {values.map((value) => (
-                <RevealItem key={value.title}>
-                  <div className="flex gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all duration-300">
-                    <div className="w-11 h-11 rounded-xl bg-linear-to-br from-brand-purple/10 to-accent-cyan/10 flex items-center justify-center text-brand-purple flex-shrink-0">
-                      {value.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-brand-indigo text-[0.95rem]">{value.title}</h4>
-                      <p className="text-sm text-text-secondary mt-1">{value.desc}</p>
-                    </div>
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        </div>
+        <RevealGroup className="mt-10 space-y-6">
+          {values.map((v, i) => (
+            <RevealItem key={v.title} className="flex gap-4">
+              <span className="display flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-[16px] font-semibold text-white">
+                {i + 1}
+              </span>
+              <div>
+                <h3 className="text-[18px] font-semibold text-ink">{v.title}</h3>
+                <p className="mt-1 text-[15px] leading-[23px] text-ink-soft">{v.desc}</p>
+              </div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
       </div>
+
+      <Reveal y={40}>
+        <TiltCard max={5} scale={1.01} className="glass relative !rounded-[28px] p-5 sm:p-8">
+          <p className="mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+            Growvix at a glance
+          </p>
+
+          <div className="mt-4 rounded-[18px] border border-[rgba(38,45,108,0.07)] bg-white p-5">
+            <div className="flex items-center gap-4">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-tint text-brand-purple">
+                <Award className="h-5 w-5" strokeWidth={1.75} />
+              </span>
+              <div>
+                <p className="display text-[40px] font-semibold leading-none text-ink">
+                  5+ <span className="text-[18px] font-medium text-ink-soft">years</span>
+                </p>
+                <p className="mt-1 text-[13px] text-ink-faint">
+                  Building digital solutions since 2021
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              {quickStats.map((s) => (
+                <div key={s.label} className="rounded-[12px] bg-[#F4F5F9] px-4 py-3">
+                  <p className="display text-[26px] font-semibold leading-tight text-ink">
+                    {s.value}
+                  </p>
+                  <p className="mono text-[11px] text-[#4A5068]">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-6 text-[14px] font-medium text-ink">
+            Every project runs through four disciplines
+          </p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {disciplines.map((d) => (
+              <span key={d.tag} className={`rounded-[12px] px-3 py-2.5 text-[14px] ${d.cls}`}>
+                <span className="mono font-semibold">{d.tag}</span> {d.label}
+              </span>
+            ))}
+          </div>
+        </TiltCard>
+      </Reveal>
     </section>
   );
 }

@@ -2,11 +2,12 @@ export const metadata = {
   title: "Privacy Policy",
   description:
     "Growvix Privacy Policy - Learn how we collect, use, and protect your personal information.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white py-16 px-6">
+    <div className="min-h-screen bg-white px-6 pt-32 pb-16">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">
           Privacy Policy
@@ -44,7 +45,7 @@ export default function PrivacyPolicy() {
           <h2>Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, please contact
-            us at hello@growvix.com.
+            us at growvixbd@gmail.com.
           </p>
         </div>
       </div>

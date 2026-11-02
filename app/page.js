@@ -6,66 +6,116 @@ import About from "./components/About";
 import Portfolio from "./components/Portfolio";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
+import { SITE_URL, pageFaqs, services, site } from "./lib/site";
 
 export default function Home() {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Growvix",
-    description:
-      "Leading global multiple solutions provider specializing in web development, mobile apps, SaaS, SEO, and digital marketing.",
-    url: "https://growvixbd.com",
-    logo: "https://growvixbd.com/logo/full_white_logo.svg",
-    sameAs: [
-      "https://facebook.com/growvix", // Replace with actual
-      "https://linkedin.com/company/growvix", // Replace with actual
-      "https://instagram.com/growvix", // Replace with actual
-      "https://twitter.com/growvix", // Replace with actual
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+1-234-567-890", // Replace with real number
-      contactType: "customer service",
-      email: "[EMAIL_ADDRESS]",
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "123 Main St", // Replace with real address
-      addressLocality: "San Francisco",
-      addressRegion: "CA",
-      postalCode: "94105",
-      addressCountry: "US",
-    },
+  const orgId = `${SITE_URL}/#organization`;
+  const businessId = `${SITE_URL}/#business`;
+  const websiteId = `${SITE_URL}/#website`;
+  const address = {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: site.address.locality,
+    addressRegion: site.address.region,
+    postalCode: site.address.postalCode,
+    addressCountry: site.address.country,
   };
 
-  const websiteSchema = {
+  /* One linked graph: who we are, where we are, what we offer, and answers */
+  const structuredData = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Growvix",
-    url: "https://growvixbd.com",
-    description:
-      "Leading global multiple solutions provider specializing in web development, mobile apps, SaaS, SEO, and digital marketing.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://growvixbd.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": orgId,
+        name: site.name,
+        legalName: site.legalName,
+        url: SITE_URL,
+        logo: { "@type": "ImageObject", url: site.logo, width: 512, height: 512 },
+        image: site.image,
+        description: site.description,
+        foundingDate: site.foundingYear,
+        email: site.email,
+        telephone: site.phoneIntl,
+        address,
+        areaServed: ["Worldwide", { "@type": "Country", name: site.address.countryName }],
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: site.phoneIntl,
+          email: site.email,
+          contactType: "sales",
+          areaServed: "Worldwide",
+          availableLanguage: ["English", "Bengali"],
+        },
+        ...(site.socials.length > 0 && { sameAs: site.socials }),
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": businessId,
+        name: site.name,
+        url: SITE_URL,
+        image: site.image,
+        logo: site.logo,
+        description: site.description,
+        email: site.email,
+        telephone: site.phoneIntl,
+        address,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: site.geo.latitude,
+          longitude: site.geo.longitude,
+        },
+        areaServed: ["Worldwide", { "@type": "City", name: "Dhaka" }],
+        parentOrganization: { "@id": orgId },
+        knowsAbout: services.map((s) => s.name),
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Digital services",
+          itemListElement: services.map((s) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: s.name, description: s.description },
+          })),
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: SITE_URL,
+        name: site.name,
+        description: site.shortDescription,
+        inLanguage: "en",
+        publisher: { "@id": orgId },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/#webpage`,
+        url: SITE_URL,
+        name: site.title,
+        description: site.description,
+        isPartOf: { "@id": websiteId },
+        about: { "@id": orgId },
+        primaryImageOfPage: site.image,
+        inLanguage: "en",
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/#faq`,
+        mainEntity: pageFaqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
       {/* ===== Hero Section ===== */}
@@ -91,6 +141,9 @@ export default function Home() {
 
       {/* ===== Testimonials Section ===== */}
       <Testimonials />
+
+      {/* ===== FAQ Section ===== */}
+      <FAQ />
 
       {/* ===== Call To Action Section ===== */}
       <CTA />

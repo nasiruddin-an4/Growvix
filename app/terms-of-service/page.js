@@ -2,11 +2,12 @@ export const metadata = {
   title: "Terms of Service",
   description:
     "Growvix Terms of Service - Please read these terms carefully before using our services.",
+  alternates: { canonical: "/terms-of-service" },
 };
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-white py-16 px-6">
+    <div className="min-h-screen bg-white px-6 pt-32 pb-16">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">
           Terms of Service
@@ -53,7 +54,7 @@ export default function TermsOfService() {
           <h2>Contact Information</h2>
           <p>
             For questions about these Terms of Service, please contact us at
-            hello@growvix.com.
+            growvixbd@gmail.com.
           </p>
         </div>
       </div>

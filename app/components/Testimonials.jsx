@@ -1,163 +1,198 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Star } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
 import Reveal from "./motion/Reveal";
 import RevealGroup, { RevealItem } from "./motion/RevealGroup";
-import TiltCard from "./motion/TiltCard";
-import Parallax from "./motion/Parallax";
 
 const testimonials = [
   {
     name: "Sarah Mitchell",
     role: "CEO, FinFlow Technologies",
     content:
-      "Growvix completely transformed our digital presence. Their team built us a banking dashboard that our clients absolutely love, and the marketing campaigns they ran brought in 3x more leads than we expected. Truly exceptional work.",
-    rating: 5,
+      "Growvix completely transformed our digital presence. They built a banking dashboard our clients love, and their campaigns brought in 3x more leads than we expected.",
     initials: "SM",
-    gradientFrom: "#6a3dfc",
-    gradientTo: "#00d4ff",
+    tile: "bg-[linear-gradient(135deg,#6a3dfc,#8b7cff)]",
   },
   {
     name: "David Chen",
     role: "Founder, ShopLift Commerce",
     content:
-      "Working with Growvix was a game-changer. They didn't just build our e-commerce platform — they became strategic partners. Revenue jumped 180% in the first quarter after launch. I can't recommend them enough.",
-    rating: 5,
+      "They didn't just build our e-commerce platform. They became strategic partners. Revenue jumped 180% in the first quarter after launch.",
     initials: "DC",
-    gradientFrom: "#ff6ec7",
-    gradientTo: "#6a3dfc",
+    tile: "bg-[linear-gradient(135deg,#F67D41,#D84E12)]",
   },
   {
     name: "Amira Patel",
     role: "Marketing Director, Meridian Fashion",
     content:
-      "The ROI from Growvix's marketing campaigns blew our projections out of the water. 340% ROAS on our Facebook campaigns, and our organic traffic grew 5x in six months. They truly understand data-driven marketing.",
-    rating: 5,
+      "340% ROAS on our Facebook campaigns, and organic traffic grew 5x in six months. They truly understand data-driven marketing.",
     initials: "AP",
-    gradientFrom: "#34d399",
-    gradientTo: "#6a3dfc",
+    tile: "bg-[linear-gradient(135deg,#0FA3A3,#262D6C)]",
   },
 ];
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const trackRef = useRef(null);
+  const activeRef = useRef(0);
+  const pausedUntil = useRef(0);
 
-  // Auto-rotate testimonials
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    activeRef.current = activeIndex;
+  }, [activeIndex]);
+
+  /* Below md the cards sit in a horizontal scroll track (the carousel) */
+  const isCarousel = () => {
+    const el = trackRef.current;
+    return !!el && el.scrollWidth > el.clientWidth + 1;
+  };
+
+  /* Move to a card: highlight it, and on the carousel also scroll it into place */
+  const goTo = useCallback(
+    (i) => {
+      const n = testimonials.length;
+      const index = ((i % n) + n) % n;
+      setActiveIndex(index);
+      const el = trackRef.current;
+      if (!el || !isCarousel()) return;
+      const card = el.querySelectorAll("[data-slide]")[index];
+      if (!card) return;
+      const trackBox = el.getBoundingClientRect();
+      const cardBox = card.getBoundingClientRect();
+      const left =
+        el.scrollLeft +
+        (cardBox.left - trackBox.left) -
+        (trackBox.width - cardBox.width) / 2;
+      el.scrollTo({ left, behavior: reduceMotion ? "auto" : "smooth" });
+    },
+    [reduceMotion],
+  );
+
+  /* Keep the dots in sync while the visitor swipes */
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let frame;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (!isCarousel()) return;
+        const slides = [...el.querySelectorAll("[data-slide]")];
+        const box = el.getBoundingClientRect();
+        const centre = box.left + box.width / 2;
+        let best = 0;
+        let bestDist = Infinity;
+        slides.forEach((slide, i) => {
+          const r = slide.getBoundingClientRect();
+          const d = Math.abs(r.left + r.width / 2 - centre);
+          if (d < bestDist) {
+            bestDist = d;
+            best = i;
+          }
+        });
+        if (best !== activeRef.current) setActiveIndex(best);
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
-  return (
-    <section className="py-24 md:py-32 bg-surface-light relative overflow-hidden">
-      {/* Decorative */}
-      <Parallax
-        speed={-0.18}
-        className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-linear-to-br from-[#6a3dfc]/5 to-transparent blur-3xl"
-      />
+  /* Auto-advance, paused for a while after the visitor touches the carousel */
+  useEffect(() => {
+    if (reduceMotion) return;
+    const interval = setInterval(() => {
+      if (Date.now() < pausedUntil.current) return;
+      goTo(activeRef.current + 1);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [reduceMotion, goTo]);
 
-      <div className="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <Reveal>
-            <span className="section-label">Testimonials</span>
+  const pause = () => {
+    pausedUntil.current = Date.now() + 8000;
+  };
+
+  return (
+    <section id="testimonials" className="relative py-16 sm:py-24 lg:py-28">
+      <div className="container-x">
+        <div className="mx-auto max-w-[720px] text-center">
+          <Reveal as="p" rotate={0} className="eyebrow">
+            Client stories
           </Reveal>
           <Reveal
             as="h2"
-            delay={0.08}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-5 text-brand-indigo"
+            delay={0.06}
+            className="display mt-3 text-[34px] font-semibold leading-[1.08] text-ink sm:text-[48px]"
           >
-            What Our Clients
-            <br />
-            <span className="gradient-text">Say About Us</span>
-          </Reveal>
-          <Reveal
-            as="p"
-            delay={0.16}
-            className="mt-5 text-lg text-text-secondary max-w-2xl mx-auto"
-          >
-            Don&apos;t just take our word for it — hear from the businesses
-            we&apos;ve helped grow.
+            Don&apos;t take our word. <span className="accent">Take theirs.</span>
           </Reveal>
         </div>
 
-        {/* Testimonials Cards */}
-        <RevealGroup className="grid md:grid-cols-3 gap-6 md:gap-8 perspective">
-          {testimonials.map((testimonial, index) => (
-            <RevealItem key={testimonial.name}>
-              <TiltCard
-                max={6}
-                className={`relative h-full bg-white rounded-2xl p-7 md:p-8 border transition-all duration-500 ${
-                  activeIndex === index
-                    ? "border-brand-purple/20 shadow-lg scale-[1.02]"
-                    : "border-border-subtle shadow-sm hover:shadow-md"
-                }`}
-              >
-                {/* Quote mark */}
-                <div className="absolute top-6 right-6 text-6xl leading-none text-brand-purple/10 font-serif select-none">
-                  &ldquo;
-                </div>
-
-                {/* Stars */}
-                <div className="flex gap-1 mb-5">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <svg
-                      key={i}
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="#6a3dfc"
-                      className="text-brand-purple"
+        {/* Phones and tablets: swipeable carousel. Desktop: three columns. */}
+        <div
+          ref={trackRef}
+          onTouchStart={pause}
+          onPointerDown={pause}
+          className="-mx-4 mt-10 snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] sm:-mx-6 md:mx-0 md:mt-12 md:overflow-visible [&::-webkit-scrollbar]:hidden"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Client stories"
+        >
+        <RevealGroup className="flex w-max gap-3 px-[8vw] pb-4 sm:px-[19vw] md:grid md:w-auto md:grid-cols-3 md:gap-4 md:px-0 md:pb-0">
+          {testimonials.map((t, index) => {
+            const active = activeIndex === index;
+            return (
+              <RevealItem key={t.name} className="h-auto w-[84vw] shrink-0 snap-center snap-always sm:w-[62vw] md:h-full md:w-auto">
+                <figure
+                  data-slide
+                  aria-roledescription="slide"
+                  aria-label={`${index + 1} of ${testimonials.length}`}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  className={`glass relative flex h-full flex-col p-5 transition-all duration-500 sm:p-7 ${
+                    active
+                      ? "glass-strong md:-translate-y-1"
+                      : "md:opacity-90"
+                  }`}
+                >
+                  {active && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-6 top-0 h-[3px] rounded-b-full bg-[linear-gradient(90deg,#F67D41,#6a3dfc)]"
+                    />
+                  )}
+                  <div className="flex gap-1" aria-label="5 out of 5 stars">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-signal text-signal" />
+                    ))}
+                  </div>
+                  <blockquote className="display mt-4 flex-1 text-[17px] font-medium leading-[26px] text-ink sm:mt-5 sm:text-[19px] sm:leading-[28px]">
+                    &ldquo;{t.content}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3 border-t border-[rgba(38,45,108,0.08)] pt-5">
+                    <span
+                      className={`flex h-11 w-11 items-center justify-center rounded-full text-[14px] font-semibold text-white ${t.tile}`}
                     >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                  ))}
-                </div>
-
-                {/* Content */}
-                <p className="text-text-secondary leading-relaxed text-[0.95rem] mb-8">
-                  &ldquo;{testimonial.content}&rdquo;
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm"
-                    style={{
-                      background: `linear-gradient(135deg, ${testimonial.gradientFrom}, ${testimonial.gradientTo})`,
-                    }}
-                  >
-                    {testimonial.initials}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-brand-indigo text-[0.95rem]">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-sm text-text-muted">{testimonial.role}</p>
-                  </div>
-                </div>
-              </TiltCard>
-            </RevealItem>
-          ))}
+                      {t.initials}
+                    </span>
+                    <span>
+                      <span className="block text-[15px] font-semibold text-ink">
+                        {t.name}
+                      </span>
+                      <span className="block text-[13px] text-ink-faint">{t.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
-
-        {/* Dots indicator */}
-        <div className="flex justify-center gap-2 mt-10 md:hidden">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIndex(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                activeIndex === i
-                  ? "bg-brand-purple w-8"
-                  : "bg-brand-purple/20"
-              }`}
-              aria-label={`View testimonial ${i + 1}`}
-            />
-          ))}
         </div>
+
       </div>
     </section>
   );
