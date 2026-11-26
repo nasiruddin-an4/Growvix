@@ -2,13 +2,26 @@
 
 /* ===== Design Tokens ===== */
 :root {
-  --background: #fbf8f4;
-  --foreground: #161928;
+  --background: #f8f7fc;
+  --foreground: #0f0e17;
+
+  /* Brand scale, built around the logo purple #6045FF */
+  --brand-50: #f4f2ff;
+  --brand-100: #ece8ff;
+  --brand-200: #d9d1ff;
+  --brand-300: #b9a9ff;
+  --brand-400: #8c78ff;
+  --brand-500: #6045ff;
+  --brand-600: #4a2fe6;
+  --brand-700: #3a22c2;
+  --brand-800: #2a1a8f;
+  --brand-900: #1a1259;
+  --brand-950: #0e0a2e;
 
   /* Brand */
   --brand-purple: #6045ff;
-  --brand-purple-light: #8559ff;
-  --brand-purple-dark: #4c28c6;
+  --brand-purple-light: #8c78ff;
+  --brand-purple-dark: #4a2fe6;
   --brand-indigo: #1a0e3f;
   --brand-indigo-light: #2d2d5a;
   --brand-indigo-dark: #0f0522;
@@ -28,23 +41,23 @@
   --shadow-sm: 0 1px 3px rgba(26, 14, 63, 0.05);
   --shadow-md: 0 4px 20px rgba(26, 14, 63, 0.08);
   --shadow-lg: 0 8px 40px rgba(26, 14, 63, 0.12);
-  --shadow-glow: 0 0 60px rgba(106, 61, 252, 0.15);
+  --shadow-glow: 0 0 60px rgba(96, 69, 255, 0.15);
 
-  /* Glass system (warm canvas, navy ink, signal orange) */
-  --canvas: #fbf8f4;
-  --ink: #161928;
-  --ink-soft: #5d6380;
-  --ink-faint: #8b91a8;
-  --navy: #262d6c;
-  --navy-deep: #13173b;
-  --violet-ink: #5633cf;
+  /* Glass system: light canvas, logo-black ink, brand purple accents */
+  --canvas: #f8f7fc;
+  --ink: #0f0e17;
+  --ink-soft: #57546b;
+  --ink-faint: #8a879e;
+  --navy: #2a1a8f;
+  --navy-deep: #0e0a2e;
+  --violet-ink: #4a2fe6;
   --violet-tint: #f3f0ff;
-  --signal: #f16222;
-  --signal-tint: #fff3ec;
+  --signal: #6045ff;
+  --signal-tint: #f0edff;
   --teal: #0fa3a3;
   --teal-ink: #0f6b6b;
   --teal-tint: #e6f7f7;
-  --hairline: rgba(38, 45, 108, 0.08);
+  --hairline: rgba(26, 18, 89, 0.08);
 
   /* 3D depth */
   --perspective: 1600px;
@@ -57,6 +70,17 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
   --color-brand-purple: var(--brand-purple);
   --color-brand-purple-light: var(--brand-purple-light);
   --color-brand-purple-dark: var(--brand-purple-dark);
@@ -163,11 +187,11 @@ body {
 
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(106, 61, 252, 0.3);
+    box-shadow: 0 0 20px rgba(96, 69, 255, 0.3);
   }
 
   50% {
-    box-shadow: 0 0 40px rgba(106, 61, 252, 0.5);
+    box-shadow: 0 0 40px rgba(96, 69, 255, 0.5);
   }
 }
 
@@ -286,8 +310,8 @@ body {
 }
 
 @keyframes approveRing {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(246, 125, 65, 0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(246, 125, 65, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(140, 120, 255, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(140, 120, 255, 0); }
 }
 
 /* Component classes live in the components layer so Tailwind utilities (hidden, rounded-*, etc.) can override them */
@@ -302,14 +326,14 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 22px;
   box-shadow:
-    0 14px 36px rgba(60, 42, 20, 0.08),
+    0 14px 36px rgba(26, 18, 89, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .glass-strong {
   background: rgba(255, 255, 255, 0.82);
   box-shadow:
-    0 20px 50px -18px rgba(38, 45, 108, 0.32),
+    0 20px 50px -18px rgba(26, 18, 89, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
@@ -350,7 +374,7 @@ body {
 }
 
 .accent {
-  background: linear-gradient(100deg, var(--signal) 0%, #e2457a 45%, var(--brand-purple) 100%);
+  background: linear-gradient(100deg, var(--brand-700) 0%, var(--brand-purple) 48%, var(--brand-400) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -380,9 +404,9 @@ body {
   border-radius: 14px;
   color: #fff;
   font-weight: 600;
-  background: linear-gradient(180deg, #f67d41 0%, #d84e12 100%);
+  background: linear-gradient(180deg, #7a63ff 0%, #4a2fe6 100%);
   box-shadow:
-    0 10px 24px -10px rgba(216, 78, 18, 0.65),
+    0 10px 24px -10px rgba(74, 47, 230, 0.65),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
   transition:
     transform 0.3s var(--ease-out-expo),
@@ -395,13 +419,13 @@ body {
 .btn-signal:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 16px 32px -12px rgba(216, 78, 18, 0.75),
+    0 16px 32px -12px rgba(74, 47, 230, 0.75),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .btn-signal:focus-visible,
 .btn-glass:focus-visible {
-  outline: 3px solid rgba(106, 61, 252, 0.45);
+  outline: 3px solid rgba(96, 69, 255, 0.45);
   outline-offset: 3px;
 }
 
@@ -416,7 +440,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid #fff;
-  box-shadow: 0 10px 26px -14px rgba(38, 45, 108, 0.35);
+  box-shadow: 0 10px 26px -14px rgba(26, 18, 89, 0.35);
   transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
   text-decoration: none;
   cursor: pointer;
@@ -428,7 +452,7 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(180deg, #f67d41 0%, #d84e12 100%);
+  background: linear-gradient(180deg, #7a63ff 0%, #4a2fe6 100%);
   color: #fff;
   padding: 14px 32px;
   border-radius: 14px;
@@ -438,7 +462,7 @@ body {
   align-items: center;
   gap: 8px;
   transition: all 0.3s var(--ease-out-expo);
-  box-shadow: 0 10px 24px -10px rgba(216, 78, 18, 0.65);
+  box-shadow: 0 10px 24px -10px rgba(74, 47, 230, 0.65);
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -459,7 +483,7 @@ body {
   align-items: center;
   gap: 8px;
   transition: all 0.3s var(--ease-out-expo);
-  border: 1px solid rgba(38, 45, 108, 0.12);
+  border: 1px solid rgba(26, 18, 89, 0.12);
   cursor: pointer;
   text-decoration: none;
 }
@@ -503,7 +527,7 @@ body {
 }
 
 .section-label-dark {
-  color: #b7bee6;
+  color: #c4bdf2;
 }
 
 /* Hero ambient background: warm canvas with soft colour fields */
@@ -512,10 +536,10 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(42% 38% at 18% 22%, rgba(246, 125, 65, 0.22), transparent 70%),
-    radial-gradient(38% 40% at 84% 18%, rgba(106, 61, 252, 0.18), transparent 70%),
-    radial-gradient(50% 45% at 60% 85%, rgba(15, 163, 163, 0.12), transparent 70%),
-    linear-gradient(180deg, #fff7ef 0%, var(--canvas) 60%);
+    radial-gradient(42% 38% at 18% 22%, rgba(140, 120, 255, 0.22), transparent 70%),
+    radial-gradient(38% 40% at 84% 18%, rgba(96, 69, 255, 0.18), transparent 70%),
+    radial-gradient(50% 45% at 60% 85%, rgba(185, 169, 255, 0.16), transparent 70%),
+    linear-gradient(180deg, #f4f1ff 0%, var(--canvas) 60%);
 }
 
 .hero-bg::after {
@@ -523,8 +547,8 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(38, 45, 108, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(38, 45, 108, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(26, 18, 89, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 18, 89, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(70% 60% at 50% 30%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(70% 60% at 50% 30%, #000 30%, transparent 75%);
@@ -535,8 +559,8 @@ body {
   transform: perspective(700px) rotateX(62deg);
   transform-origin: 50% 100%;
   background-image:
-    linear-gradient(rgba(38, 45, 108, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(38, 45, 108, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(26, 18, 89, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 18, 89, 0.1) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
@@ -580,7 +604,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 50px -24px rgba(38, 45, 108, 0.35);
+  box-shadow: 0 24px 50px -24px rgba(26, 18, 89, 0.35);
 }
 
 .container-x {
@@ -613,7 +637,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(38, 45, 108, 0.35);
+  background: rgba(26, 18, 89, 0.35);
   border-radius: 4px;
 }
 

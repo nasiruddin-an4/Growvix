@@ -144,7 +144,7 @@ export default function FAQ() {
               <div className="mt-4 grid gap-2">
                 <a
                   href={`mailto:${site.email}`}
-                  className="group flex items-center gap-3 rounded-[14px] border border-[rgba(38,45,108,0.08)] bg-white px-3.5 py-3 transition-colors hover:border-brand-purple/30 hover:bg-violet-tint/50"
+                  className="group flex items-center gap-3 rounded-[14px] border border-[rgba(26,18,89,0.08)] bg-white px-3.5 py-3 transition-colors hover:border-brand-purple/30 hover:bg-violet-tint/50"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-violet-tint text-brand-purple">
                     <Mail className="h-4 w-4" />
@@ -157,7 +157,7 @@ export default function FAQ() {
                 </a>
                 <a
                   href={`tel:${site.phoneIntl}`}
-                  className="group flex items-center gap-3 rounded-[14px] border border-[rgba(38,45,108,0.08)] bg-white px-3.5 py-3 transition-colors hover:border-teal/40 hover:bg-teal-tint/50"
+                  className="group flex items-center gap-3 rounded-[14px] border border-[rgba(26,18,89,0.08)] bg-white px-3.5 py-3 transition-colors hover:border-teal/40 hover:bg-teal-tint/50"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-teal-tint text-teal-ink">
                     <Phone className="h-4 w-4" />

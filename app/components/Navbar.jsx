@@ -90,12 +90,12 @@ export default function Navbar() {
   const background = useTransform(
     progress,
     [0, 1],
-    ["rgba(255, 250, 245, 0.88)", "rgba(255, 255, 255, 0.78)"],
+    ["rgba(252, 251, 255, 0.88)", "rgba(255, 255, 255, 0.78)"],
   );
   const borderBottomColor = useTransform(
     progress,
     [0, 1],
-    ["rgba(38, 45, 108, 0.08)", "rgba(255, 255, 255, 0.9)"],
+    ["rgba(26, 18, 89, 0.08)", "rgba(255, 255, 255, 0.9)"],
   );
   const borderEdgeColor = useTransform(
     progress,
@@ -116,7 +116,7 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", update);
   }, [vw]);
 
-  const boxShadow = useMotionTemplate`0 12px 30px -16px rgba(22, 25, 40, ${shadowAlpha})`;
+  const boxShadow = useMotionTemplate`0 12px 30px -16px rgba(15, 14, 23, ${shadowAlpha})`;
   const backdropFilter = useMotionTemplate`blur(${blur}px) saturate(140%)`;
 
   useEffect(() => {
@@ -158,8 +158,8 @@ export default function Navbar() {
           <Image
             src="/logo/full_logo.svg"
             alt="Growvix"
-            width={130}
-            height={33}
+            width={157}
+            height={32}
             priority
             className="h-7 w-auto sm:h-8"
           />
@@ -229,14 +229,14 @@ export default function Navbar() {
                   ? { duration: 0 }
                   : { type: "spring", stiffness: 320, damping: 34, mass: 0.8 }
               }
-              className="fixed inset-y-0 right-0 z-[61] flex h-[100dvh] w-[80%] flex-col rounded-l-[28px] border-l border-white bg-[#FFFCF8] shadow-[-24px_0_60px_-20px_rgba(22,25,40,0.35)] lg:hidden"
+              className="fixed inset-y-0 right-0 z-[61] flex h-[100dvh] w-[80%] flex-col rounded-l-[28px] border-l border-white bg-[#FCFBFF] shadow-[-24px_0_60px_-20px_rgba(15,14,23,0.35)] lg:hidden"
             >
               <div className="flex items-center justify-between px-5 pb-2 pt-5">
                 <Image
                   src="/logo/full_logo.svg"
                   alt="Growvix"
-                  width={120}
-                  height={30}
+                  width={137}
+                  height={28}
                   className="h-7 w-auto"
                 />
                 <button

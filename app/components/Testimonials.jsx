@@ -13,7 +13,7 @@ const testimonials = [
     content:
       "Growvix completely transformed our digital presence. They built a banking dashboard our clients love, and their campaigns brought in 3x more leads than we expected.",
     initials: "SM",
-    tile: "bg-[linear-gradient(135deg,#6a3dfc,#8b7cff)]",
+    tile: "bg-[linear-gradient(135deg,#6045ff,#8b7cff)]",
   },
   {
     name: "David Chen",
@@ -21,7 +21,7 @@ const testimonials = [
     content:
       "They didn't just build our e-commerce platform. They became strategic partners. Revenue jumped 180% in the first quarter after launch.",
     initials: "DC",
-    tile: "bg-[linear-gradient(135deg,#F67D41,#D84E12)]",
+    tile: "bg-[linear-gradient(135deg,#7A63FF,#4A2FE6)]",
   },
   {
     name: "Amira Patel",
@@ -29,7 +29,7 @@ const testimonials = [
     content:
       "340% ROAS on our Facebook campaigns, and organic traffic grew 5x in six months. They truly understand data-driven marketing.",
     initials: "AP",
-    tile: "bg-[linear-gradient(135deg,#0FA3A3,#262D6C)]",
+    tile: "bg-[linear-gradient(135deg,#0FA3A3,#2A1A8F)]",
   },
 ];
 
@@ -162,7 +162,7 @@ export default function Testimonials() {
                   {active && (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-x-6 top-0 h-[3px] rounded-b-full bg-[linear-gradient(90deg,#F67D41,#6a3dfc)]"
+                      className="absolute inset-x-6 top-0 h-[3px] rounded-b-full bg-[linear-gradient(90deg,#7A63FF,#6045ff)]"
                     />
                   )}
                   <div className="flex gap-1" aria-label="5 out of 5 stars">
@@ -173,7 +173,7 @@ export default function Testimonials() {
                   <blockquote className="display mt-4 flex-1 text-[17px] font-medium leading-[26px] text-ink sm:mt-5 sm:text-[19px] sm:leading-[28px]">
                     &ldquo;{t.content}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-3 border-t border-[rgba(38,45,108,0.08)] pt-5">
+                  <figcaption className="mt-6 flex items-center gap-3 border-t border-[rgba(26,18,89,0.08)] pt-5">
                     <span
                       className={`flex h-11 w-11 items-center justify-center rounded-full text-[14px] font-semibold text-white ${t.tile}`}
                     >

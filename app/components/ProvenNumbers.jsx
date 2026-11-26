@@ -87,7 +87,7 @@ function GrowthPlanVisual() {
         className="glass-dark relative rounded-[20px] p-4 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)] sm:p-6"
       >
         <div className="flex items-center justify-between">
-          <p className="mono text-[11px] uppercase tracking-[0.14em] text-[#B7BEE6]">
+          <p className="mono text-[11px] uppercase tracking-[0.14em] text-[#C4BDF2]">
             Growth plan · Q1
           </p>
           <span className="inline-flex items-center gap-2 rounded-full bg-teal/15 px-2.5 py-1 text-[12px] font-medium text-[#55C7C7]">
@@ -99,14 +99,14 @@ function GrowthPlanVisual() {
         <div className="mt-4 flex items-end justify-between gap-4">
           <div>
             <p className="display text-[34px] font-semibold leading-none sm:text-[40px]">+248%</p>
-            <p className="mt-1.5 text-[13px] text-[#B7BEE6]">Organic traffic since launch</p>
+            <p className="mt-1.5 text-[13px] text-[#C4BDF2]">Organic traffic since launch</p>
           </div>
           <div className="hidden gap-1.5 pb-1 sm:flex">
             {["3M", "6M", "1Y"].map((t, i) => (
               <span
                 key={t}
                 className={`mono rounded-[8px] px-2 py-1 text-[11px] ${
-                  i === 1 ? "bg-white text-navy" : "bg-white/5 text-[#B7BEE6]"
+                  i === 1 ? "bg-white text-navy" : "bg-white/5 text-[#C4BDF2]"
                 }`}
               >
                 {t}
@@ -224,7 +224,7 @@ function GrowthPlanVisual() {
                 >
                   {label}
                 </p>
-                <p className="mono mt-0.5 hidden text-[10px] text-[#8B91C4] sm:block">{when}</p>
+                <p className="mono mt-0.5 hidden text-[10px] text-[#9A93CC] sm:block">{when}</p>
                 <span className="mt-2 block h-1 overflow-hidden rounded-full bg-white/10">
                   <motion.span
                     key={`${label}-${state}`}
@@ -283,7 +283,7 @@ export default function ProvenNumbers() {
             return (
               <RevealItem key={item.title} className="h-full">
                 <TiltCard max={5} scale={1.01} className="glass h-full p-6">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-signal-tint text-[#D84E12]">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[12px] bg-signal-tint text-[#4A2FE6]">
                     <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </span>
                   <CountUp
@@ -309,7 +309,7 @@ export default function ProvenNumbers() {
         >
           <div
             aria-hidden="true"
-            className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(15,163,163,0.35),transparent)]"
+            className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(140,120,255,0.35),transparent)]"
           />
           <div
             aria-hidden="true"
@@ -317,13 +317,13 @@ export default function ProvenNumbers() {
           />
           <div className="relative grid grid-cols-[minmax(0,1fr)] items-center gap-7 sm:gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <p className="eyebrow !text-[#B7BEE6]">Ready to scale?</p>
+              <p className="eyebrow !text-[#C4BDF2]">Ready to scale?</p>
               <h2 className="display mt-3 text-[30px] font-semibold leading-[1.1] sm:text-[44px]">
                 Let&apos;s build something
                 <br />
                 extraordinary.
               </h2>
-              <p className="mt-4 max-w-md text-[17px] leading-[27px] text-[#B7BEE6]">
+              <p className="mt-4 max-w-md text-[17px] leading-[27px] text-[#C4BDF2]">
                 Join the businesses that have transformed their digital presence
                 with Growvix.
               </p>
@@ -331,7 +331,7 @@ export default function ProvenNumbers() {
                 {["Web", "Mobile", "SaaS", "SEO", "Meta Ads", "Brand"].map((t) => (
                   <span
                     key={t}
-                    className="mono shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] text-[#DADEF3]"
+                    className="mono shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] text-[#E4E0FA]"
                   >
                     {t}
                   </span>

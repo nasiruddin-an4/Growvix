@@ -23,14 +23,14 @@ function Screen({ children, className = "w-[78%]" }) {
   return (
     <div
       aria-hidden="true"
-      className={`absolute bottom-0 left-1/2 -translate-x-1/2 overflow-hidden rounded-t-[14px] border border-white bg-white pb-1 shadow-[0_20px_40px_-18px_rgba(38,45,108,0.45)] transition-transform duration-500 group-hover:-translate-y-1.5 ${className}`}
+      className={`absolute bottom-0 left-1/2 -translate-x-1/2 overflow-hidden rounded-t-[14px] border border-white bg-white pb-1 shadow-[0_20px_40px_-18px_rgba(26,18,89,0.45)] transition-transform duration-500 group-hover:-translate-y-1.5 ${className}`}
     >
       {children}
     </div>
   );
 }
 
-function Bar({ w = "w-1/2", tone = "bg-[#EEF0FA]" }) {
+function Bar({ w = "w-1/2", tone = "bg-[#EFEDFB]" }) {
   return <span className={`block h-1.5 rounded-full ${w} ${tone}`} />;
 }
 
@@ -87,17 +87,17 @@ function FinFlowPreview() {
 /* ShopLift — storefront */
 function ShopLiftPreview() {
   const items = [
-    ["from-[#FFD9C2] to-[#FFB089]", "$48"],
+    ["from-[#E3DCFF] to-[#A794FF]", "$48"],
     ["from-[#E3DCFF] to-[#B9A9FF]", "$72"],
     ["from-[#CDEFEF] to-[#8FD6D6]", "$36"],
   ];
   return (
     <Screen>
-      <div className="flex items-center justify-between border-b border-[rgba(38,45,108,0.06)] px-3 py-2">
+      <div className="flex items-center justify-between border-b border-[rgba(26,18,89,0.06)] px-3 py-2">
         <span className="display text-[11px] font-semibold text-ink">shoplift</span>
         <span className="relative text-ink">
           <ShoppingBag className="h-3.5 w-3.5" />
-          <span className="absolute -right-1.5 -top-1.5 flex h-3 w-3 items-center justify-center rounded-full bg-[#F16222] text-[7px] font-bold text-white">
+          <span className="absolute -right-1.5 -top-1.5 flex h-3 w-3 items-center justify-center rounded-full bg-[#6045FF] text-[7px] font-bold text-white">
             3
           </span>
         </span>
@@ -179,7 +179,7 @@ function PropVistaPreview() {
         {/* simple house */}
         <svg viewBox="0 0 120 60" className="absolute bottom-0 left-1/2 h-[58px] -translate-x-1/2">
           <rect x="0" y="52" width="120" height="8" fill="#9FD3A8" />
-          <path d="M28 30 L60 8 L92 30 Z" fill="#262D6C" />
+          <path d="M28 30 L60 8 L92 30 Z" fill="#2A1A8F" />
           <rect x="34" y="28" width="52" height="26" fill="#FFFFFF" />
           <rect x="54" y="38" width="12" height="16" fill="#6045FF" />
           <rect x="39" y="33" width="10" height="9" fill="#BFD0FF" />
@@ -251,7 +251,7 @@ function MeridianPreview() {
 function EduVersePreview() {
   return (
     <Screen>
-      <div className="relative h-[72px] bg-[linear-gradient(135deg,#2A2F5C,#13173B)]">
+      <div className="relative h-[72px] bg-[linear-gradient(135deg,#2A1F6B,#0E0A2E)]">
         <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-[4px] bg-[#E5484D] px-1.5 py-0.5 text-[8px] font-bold text-white">
           <span className="h-1 w-1 rounded-full bg-white" /> LIVE
         </span>
@@ -287,7 +287,7 @@ const projects = [
     description:
       "A financial management dashboard with real-time analytics, transaction tracking and AI-powered insights for a fintech startup.",
     tags: ["React", "Node.js", "PostgreSQL"],
-    surface: "from-[#EEF0FA] via-[#E6E0FF] to-[#CFC3FF]",
+    surface: "from-[#EFEDFB] via-[#E6E0FF] to-[#CFC3FF]",
     metrics: "3x faster transactions",
     Preview: FinFlowPreview,
   },
@@ -298,7 +298,7 @@ const projects = [
     description:
       "Inventory, payments and a customer storefront in one platform. Sales rose 180% after launch.",
     tags: ["Next.js", "Stripe", "MongoDB"],
-    surface: "from-[#FFF3EC] via-[#FFE4D4] to-[#FFC9A8]",
+    surface: "from-[#F0EDFF] via-[#E3DCFF] to-[#C6B8FF]",
     metrics: "+180% revenue",
     Preview: ShopLiftPreview,
   },
@@ -320,7 +320,7 @@ const projects = [
     description:
       "Listings and management with virtual tours, lead generation and automated marketing workflows for agencies.",
     tags: ["Next.js", "AWS", "Elasticsearch"],
-    surface: "from-[#EEF0FA] via-[#DDE2F7] to-[#BCC5EE]",
+    surface: "from-[#EFEDFB] via-[#DDE2F7] to-[#BCC5EE]",
     metrics: "2,000+ listings",
     Preview: PropVistaPreview,
   },
@@ -391,7 +391,7 @@ export default function Portfolio() {
                 >
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 opacity-60 [background-image:radial-gradient(rgba(38,45,108,0.12)_1px,transparent_1px)] [background-size:14px_14px]"
+                    className="absolute inset-0 opacity-60 [background-image:radial-gradient(rgba(26,18,89,0.12)_1px,transparent_1px)] [background-size:14px_14px]"
                   />
                   <Preview />
                   <span className="glass glass-strong absolute left-3 top-3 z-10 !rounded-full px-3 py-1 text-[12px] font-medium text-navy">
@@ -417,7 +417,7 @@ export default function Portfolio() {
                     {p.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="mono rounded-[10px] bg-[#F4F5F9] px-3 py-1.5 text-[12px] text-[#4A5068]"
+                        className="mono rounded-[10px] bg-[#F4F5F9] px-3 py-1.5 text-[12px] text-[#4F4B66]"
                       >
                         {tag}
                       </span>

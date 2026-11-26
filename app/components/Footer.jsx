@@ -67,11 +67,11 @@ export default function Footer() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(15,163,163,0.3),transparent)]"
+        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(closest-side,rgba(140,120,255,0.3),transparent)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-40 -left-20 h-96 w-96 rounded-full bg-[radial-gradient(closest-side,rgba(241,98,34,0.18),transparent)]"
+        className="pointer-events-none absolute -bottom-40 -left-20 h-96 w-96 rounded-full bg-[radial-gradient(closest-side,rgba(96,69,255,0.18),transparent)]"
       />
 
       <div className="container-x relative">
@@ -82,12 +82,12 @@ export default function Footer() {
               <Image
                 src="/logo/full_white_logo.svg"
                 alt="Growvix"
-                width={130}
-                height={36}
+                width={157}
+                height={32}
                 className="h-8 w-auto"
               />
             </Link>
-            <p className="mt-4 max-w-sm text-[14px] leading-[22px] text-[#B7BEE6] sm:mt-5 sm:max-w-xs sm:text-[15px] sm:leading-[24px]">
+            <p className="mt-4 max-w-sm text-[14px] leading-[22px] text-[#C4BDF2] sm:mt-5 sm:max-w-xs sm:text-[15px] sm:leading-[24px]">
               We are a full-service digital agency specializing in software
               development and digital marketing. We help businesses grow through
               technology and strategy.
@@ -100,7 +100,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#DADEF3] transition-all duration-300 hover:border-signal hover:bg-signal hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#E4E0FA] transition-all duration-300 hover:border-signal hover:bg-signal hover:text-white"
                 >
                   {social.icon}
                 </a>
@@ -110,7 +110,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mono mb-4 text-[12px] font-medium uppercase tracking-[0.16em] text-[#B7BEE6] sm:mb-5">
+            <h4 className="mono mb-4 text-[12px] font-medium uppercase tracking-[0.16em] text-[#C4BDF2] sm:mb-5">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -118,11 +118,11 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center text-[14px] text-[#DADEF3] transition-colors duration-300 hover:text-white sm:text-[15px]"
+                    className="group inline-flex items-center text-[14px] text-[#E4E0FA] transition-colors duration-300 hover:text-white sm:text-[15px]"
                   >
                     <ArrowRight
                       aria-hidden="true"
-                      className="h-3.5 w-0 shrink-0 -translate-x-2 text-[#F67D41] opacity-0 transition-all duration-300 ease-out group-hover:mr-1.5 group-hover:w-3.5 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:mr-1.5 group-focus-visible:w-3.5 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                      className="h-3.5 w-0 shrink-0 -translate-x-2 text-[#9B85FF] opacity-0 transition-all duration-300 ease-out group-hover:mr-1.5 group-hover:w-3.5 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:mr-1.5 group-focus-visible:w-3.5 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
                     />
                     {link.label}
                   </Link>
@@ -133,7 +133,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="mono mb-4 text-[12px] font-medium uppercase tracking-[0.16em] text-[#B7BEE6] sm:mb-5">
+            <h4 className="mono mb-4 text-[12px] font-medium uppercase tracking-[0.16em] text-[#C4BDF2] sm:mb-5">
               Services
             </h4>
             <ul className="space-y-3">
@@ -141,11 +141,11 @@ export default function Footer() {
                 <li key={service}>
                   <Link
                     href="/#services"
-                    className="group inline-flex items-center text-[14px] text-[#DADEF3] transition-colors duration-300 hover:text-white sm:text-[15px]"
+                    className="group inline-flex items-center text-[14px] text-[#E4E0FA] transition-colors duration-300 hover:text-white sm:text-[15px]"
                   >
                     <ArrowRight
                       aria-hidden="true"
-                      className="h-3.5 w-0 shrink-0 -translate-x-2 text-[#F67D41] opacity-0 transition-all duration-300 ease-out group-hover:mr-1.5 group-hover:w-3.5 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:mr-1.5 group-focus-visible:w-3.5 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                      className="h-3.5 w-0 shrink-0 -translate-x-2 text-[#9B85FF] opacity-0 transition-all duration-300 ease-out group-hover:mr-1.5 group-hover:w-3.5 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:mr-1.5 group-focus-visible:w-3.5 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
                     />
                     {service}
                   </Link>
@@ -156,11 +156,11 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="col-span-2 lg:col-span-1">
-            <h4 className="mono mb-4 text-[12px] font-medium uppercase tracking-[0.16em] text-[#B7BEE6] sm:mb-5">
+            <h4 className="mono mb-4 text-[12px] font-medium uppercase tracking-[0.16em] text-[#C4BDF2] sm:mb-5">
               Contact Us
             </h4>
             <ul className="grid gap-2 sm:space-y-4 sm:gap-0">
-              <li className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] text-[#DADEF3] sm:items-start sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
+              <li className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] text-[#E4E0FA] sm:items-start sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
                 <svg
                   width="18"
                   height="18"
@@ -170,7 +170,7 @@ export default function Footer() {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="shrink-0 text-[#F67D41] sm:mt-0.5"
+                  className="shrink-0 text-[#9B85FF] sm:mt-0.5"
                 >
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
@@ -182,7 +182,7 @@ export default function Footer() {
                   growvixbd@gmail.com
                 </a>
               </li>
-              <li className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] text-[#DADEF3] sm:items-start sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
+              <li className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] text-[#E4E0FA] sm:items-start sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
                 <svg
                   width="18"
                   height="18"
@@ -192,7 +192,7 @@ export default function Footer() {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="shrink-0 text-[#F67D41] sm:mt-0.5"
+                  className="shrink-0 text-[#9B85FF] sm:mt-0.5"
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
@@ -203,7 +203,7 @@ export default function Footer() {
                   01815654292
                 </a>
               </li>
-              <li className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] text-[#DADEF3] sm:items-start sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
+              <li className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] text-[#E4E0FA] sm:items-start sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
                 <svg
                   width="18"
                   height="18"
@@ -213,7 +213,7 @@ export default function Footer() {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="shrink-0 text-[#F67D41] sm:mt-0.5"
+                  className="shrink-0 text-[#9B85FF] sm:mt-0.5"
                 >
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
@@ -230,10 +230,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-3 pt-6 sm:pt-8 md:flex-row md:gap-4">
-          <p className="text-[13px] text-[#8B91C4]">
+          <p className="text-[13px] text-[#9A93CC]">
             &copy; {new Date().getFullYear()} Growvix. All rights reserved.
           </p>
-          <div className="flex gap-6 text-[13px] text-[#8B91C4]">
+          <div className="flex gap-6 text-[13px] text-[#9A93CC]">
             <a
               href="/privacy-policy"
               className="hover:text-white transition-colors"

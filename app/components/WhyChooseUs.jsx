@@ -55,10 +55,10 @@ export default function WhyChooseUs() {
   return (
     <section id="why-growvix" className="relative py-16 sm:py-24">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-[24px] border border-white bg-[linear-gradient(170deg,#FFF7EF_0%,#F3F0FF_60%,#EEF0FA_100%)] px-4 py-8 shadow-[0_14px_36px_rgba(60,42,20,0.08)] sm:rounded-[32px] sm:p-10 lg:p-14">
+        <div className="relative overflow-hidden rounded-[24px] border border-white bg-[linear-gradient(170deg,#FFF7EF_0%,#F3F0FF_60%,#EEF0FA_100%)] px-4 py-8 shadow-[0_14px_36px_rgba(26,18,89,0.08)] sm:rounded-[32px] sm:p-10 lg:p-14">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-0 h-[60%] w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(241,98,34,0.14),rgba(106,61,252,0.08),transparent)] blur-2xl"
+            className="pointer-events-none absolute left-1/2 top-0 h-[60%] w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(96,69,255,0.14),rgba(96,69,255,0.08),transparent)] blur-2xl"
           />
           <div className="relative mx-auto max-w-[720px] text-center">
             <Reveal as="p" rotate={0} className="eyebrow">
@@ -91,7 +91,7 @@ export default function WhyChooseUs() {
                   {/* Phones: icon beside the text in a compact row. Larger screens: stacked card. */}
                   <div className="flex items-start gap-3.5 sm:block">
                     <div className="flex shrink-0 items-center justify-between">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-signal-tint text-[#D84E12] sm:h-11 sm:w-11">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-signal-tint text-[#4A2FE6] sm:h-11 sm:w-11">
                         <Icon className="h-5 w-5" strokeWidth={1.75} />
                       </span>
                       <span className="mono hidden text-[12px] text-ink-faint sm:inline">

@@ -8,7 +8,7 @@ export default function sitemap() {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
-      images: [`${SITE_URL}/opengraph-image.jpg`, `${SITE_URL}/hero-devices.webp`],
+      images: [`${SITE_URL}/opengraph-image.jpg`],
     },
     {
       url: `${SITE_URL}/privacy-policy`,

@@ -29,8 +29,8 @@ function Tags({ tags, dark = false }) {
           key={tag}
           className={`mono rounded-full px-3 py-1.5 text-[12px] ${
             dark
-              ? "border border-white/15 bg-white/5 text-[#DADEF3]"
-              : "border border-[rgba(38,45,108,0.08)] bg-white/80 text-[#4A5068]"
+              ? "border border-white/15 bg-white/5 text-[#E4E0FA]"
+              : "border border-[rgba(26,18,89,0.08)] bg-white/80 text-[#4F4B66]"
           }`}
         >
           {tag}
@@ -44,7 +44,7 @@ function CardHead({ icon: Icon, title, audience, tile, dark = false }) {
   return (
     <div className="flex items-center gap-4">
       <span
-        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] shadow-[0_14px_30px_-14px_rgba(38,45,108,0.55)] ${tile}`}
+        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] shadow-[0_14px_30px_-14px_rgba(26,18,89,0.55)] ${tile}`}
       >
         <Icon className="h-6 w-6" strokeWidth={1.75} />
       </span>
@@ -58,7 +58,7 @@ function CardHead({ icon: Icon, title, audience, tile, dark = false }) {
         </h3>
         <p
           className={`mt-1 inline-flex whitespace-nowrap rounded-full px-2.5 py-0.5 text-[12px] font-medium ${
-            dark ? "bg-white/10 text-[#B7BEE6]" : "bg-[#EEF0FA] text-navy"
+            dark ? "bg-white/10 text-[#C4BDF2]" : "bg-[#EFEDFB] text-navy"
           }`}
         >
           {audience}
@@ -107,10 +107,10 @@ function WebVisual() {
   return (
     <div
       aria-hidden="true"
-      className="relative -mb-9 -mr-9 mt-8 overflow-hidden rounded-tl-[18px] border border-[rgba(38,45,108,0.08)] bg-white shadow-[0_24px_60px_-30px_rgba(38,45,108,0.45)] sm:ml-10 lg:absolute lg:bottom-0 lg:left-[50%] lg:right-0 lg:m-0"
+      className="relative -mb-9 -mr-9 mt-8 overflow-hidden rounded-tl-[18px] border border-[rgba(26,18,89,0.08)] bg-white shadow-[0_24px_60px_-30px_rgba(26,18,89,0.45)] sm:ml-10 lg:absolute lg:bottom-0 lg:left-[50%] lg:right-0 lg:m-0"
     >
       {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 border-b border-[rgba(38,45,108,0.06)] px-4 py-3">
+      <div className="flex items-center gap-1.5 border-b border-[rgba(26,18,89,0.06)] px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
@@ -138,20 +138,20 @@ function WebVisual() {
             <br />
             delivered daily.
           </p>
-          <span className="mt-1.5 block h-1.5 w-11/12 rounded-full bg-[#EEF0FA]" />
-          <span className="mt-1 block h-1.5 w-3/4 rounded-full bg-[#EEF0FA]" />
+          <span className="mt-1.5 block h-1.5 w-11/12 rounded-full bg-[#EFEDFB]" />
+          <span className="mt-1 block h-1.5 w-3/4 rounded-full bg-[#EFEDFB]" />
           <span className="mt-2.5 inline-flex h-6 items-center rounded-[7px] bg-brand-purple px-2.5 text-[10px] font-semibold text-white">
             Order now
           </span>
         </div>
         <div className="relative overflow-hidden rounded-[12px] bg-[linear-gradient(150deg,#F3F0FF,#E3DCFF_60%,#CFC3FF)]">
-          <span className="absolute bottom-2 left-1/2 h-12 w-9 -translate-x-1/2 rounded-b-[12px] rounded-t-[5px] bg-white/90 shadow-[0_10px_20px_-10px_rgba(38,45,108,0.5)]" />
+          <span className="absolute bottom-2 left-1/2 h-12 w-9 -translate-x-1/2 rounded-b-[12px] rounded-t-[5px] bg-white/90 shadow-[0_10px_20px_-10px_rgba(26,18,89,0.5)]" />
           <span className="absolute bottom-[58px] left-1/2 h-2 w-11 -translate-x-1/2 rounded-full bg-brand-purple/80" />
         </div>
       </div>
 
       {/* Lighthouse scores */}
-      <div className="mt-4 flex items-center justify-between border-t border-[rgba(38,45,108,0.06)] bg-[#FBFAFF] px-5 py-3">
+      <div className="mt-4 flex items-center justify-between border-t border-[rgba(26,18,89,0.06)] bg-[#FBFAFF] px-5 py-3">
         <span className="mono text-[10px] uppercase tracking-[0.12em] text-ink-faint">
           Lighthouse
         </span>
@@ -174,7 +174,7 @@ function MobileVisual() {
       className="relative mt-6 h-[300px] sm:h-[330px] lg:absolute lg:bottom-0 lg:right-8 lg:mt-0 lg:h-[80%] lg:w-[190px]"
     >
       {/* Push notification */}
-      <div className="float-soft absolute left-1/2 top-2 z-20 flex w-[210px] -translate-x-1/2 items-center gap-2 rounded-[14px] border border-white bg-white/90 p-2 shadow-[0_16px_30px_-14px_rgba(38,45,108,0.5)] backdrop-blur lg:-right-5 lg:left-auto lg:-top-3 lg:translate-x-0">
+      <div className="float-soft absolute left-1/2 top-2 z-20 flex w-[210px] -translate-x-1/2 items-center gap-2 rounded-[14px] border border-white bg-white/90 p-2 shadow-[0_16px_30px_-14px_rgba(26,18,89,0.5)] backdrop-blur lg:-right-5 lg:left-auto lg:-top-3 lg:translate-x-0">
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] bg-brand-purple text-white">
           <Bell className="h-3.5 w-3.5" />
         </span>
@@ -185,7 +185,7 @@ function MobileVisual() {
       </div>
 
       {/* Phone */}
-      <div className="absolute -bottom-[60px] left-1/2 w-[170px] -translate-x-1/2 overflow-hidden rounded-[30px] border-[5px] border-white bg-[#FBFAFF] shadow-[0_24px_50px_-24px_rgba(38,45,108,0.6)] lg:-bottom-[40px] lg:left-auto lg:right-0 lg:w-[180px] lg:translate-x-0 lg:rotate-[4deg]">
+      <div className="absolute -bottom-[60px] left-1/2 w-[170px] -translate-x-1/2 overflow-hidden rounded-[30px] border-[5px] border-white bg-[#FBFAFF] shadow-[0_24px_50px_-24px_rgba(26,18,89,0.6)] lg:-bottom-[40px] lg:left-auto lg:right-0 lg:w-[180px] lg:translate-x-0 lg:rotate-[4deg]">
         <div className="mx-auto mt-2 h-1.5 w-12 rounded-full bg-ink/10" />
         <div className="space-y-2 p-3">
           <div className="flex items-center justify-between">
@@ -207,7 +207,7 @@ function MobileVisual() {
           ].map(([name, price]) => (
             <div
               key={name}
-              className="flex items-center gap-2 rounded-[10px] bg-white px-2 py-1.5 shadow-[0_4px_10px_-6px_rgba(38,45,108,0.3)]"
+              className="flex items-center gap-2 rounded-[10px] bg-white px-2 py-1.5 shadow-[0_4px_10px_-6px_rgba(26,18,89,0.3)]"
             >
               <span className="h-6 w-6 rounded-[7px] bg-[#F3F0FF]" />
               <span className="text-[11px] font-medium text-ink">{name}</span>
@@ -224,7 +224,7 @@ function MobileVisual() {
       </div>
 
       {/* Store rating */}
-      <div className="absolute bottom-4 left-0 z-20 hidden items-center gap-1.5 rounded-full border border-white bg-white/90 px-3 py-1.5 shadow-[0_12px_24px_-12px_rgba(38,45,108,0.5)] lg:-left-20 lg:flex">
+      <div className="absolute bottom-4 left-0 z-20 hidden items-center gap-1.5 rounded-full border border-white bg-white/90 px-3 py-1.5 shadow-[0_12px_24px_-12px_rgba(26,18,89,0.5)] lg:-left-20 lg:flex">
         <Star className="h-3.5 w-3.5 fill-[#FEBC2E] text-[#FEBC2E]" />
         <span className="text-[12px] font-semibold text-ink">4.9</span>
         <span className="text-[11px] text-ink-soft">App Store</span>
@@ -239,7 +239,7 @@ const UPTIME = Array.from({ length: 30 }, (_, i) => (i === 17 ? "warn" : "ok"));
 
 function SaasVisual() {
   return (
-    <div aria-hidden="true" className="mt-6 rounded-[16px] border border-[rgba(38,45,108,0.07)] bg-white p-4">
+    <div aria-hidden="true" className="mt-6 rounded-[16px] border border-[rgba(26,18,89,0.07)] bg-white p-4">
       <div className="flex items-end justify-between">
         <div>
           <p className="mono text-[10px] uppercase tracking-[0.12em] text-ink-faint">MRR</p>
@@ -290,8 +290,8 @@ function SaasVisual() {
 
 function SeoVisual() {
   return (
-    <div aria-hidden="true" className="mt-6 rounded-[16px] border border-[rgba(38,45,108,0.07)] bg-white p-4">
-      <div className="flex h-8 items-center gap-2 rounded-full border border-[rgba(38,45,108,0.1)] px-3 text-[12px] text-ink">
+    <div aria-hidden="true" className="mt-6 rounded-[16px] border border-[rgba(26,18,89,0.07)] bg-white p-4">
+      <div className="flex h-8 items-center gap-2 rounded-full border border-[rgba(26,18,89,0.1)] px-3 text-[12px] text-ink">
         <Search className="h-3.5 w-3.5 text-ink-faint" />
         web design agency
       </div>
@@ -331,7 +331,7 @@ function SeoVisual() {
 
 function AdsVisual() {
   return (
-    <div aria-hidden="true" className="mt-6 overflow-hidden rounded-[16px] border border-[rgba(38,45,108,0.07)] bg-white">
+    <div aria-hidden="true" className="mt-6 overflow-hidden rounded-[16px] border border-[rgba(26,18,89,0.07)] bg-white">
       <div className="flex items-center gap-2 px-3 py-2.5">
         <span className="h-7 w-7 rounded-full bg-[linear-gradient(135deg,#E2457A,#7A63FF)]" />
         <div>
@@ -345,7 +345,7 @@ function AdsVisual() {
         </span>
         <span className="absolute bottom-3 right-6 h-14 w-14 rounded-full bg-[radial-gradient(circle_at_35%_30%,#fff,#C9BEFF_45%,#7A63FF)] shadow-[0_12px_24px_-10px_rgba(74,47,230,0.6)]" />
       </div>
-      <div className="flex items-center justify-between border-b border-[rgba(38,45,108,0.06)] px-3 py-2">
+      <div className="flex items-center justify-between border-b border-[rgba(26,18,89,0.06)] px-3 py-2">
         <div className="flex gap-2.5 text-ink-soft">
           <Heart className="h-3.5 w-3.5 fill-[#E2457A] text-[#E2457A]" />
           <MessageCircle className="h-3.5 w-3.5" />
@@ -354,7 +354,7 @@ function AdsVisual() {
           Shop now
         </span>
       </div>
-      <div className="grid grid-cols-3 divide-x divide-[rgba(38,45,108,0.06)] text-center">
+      <div className="grid grid-cols-3 divide-x divide-[rgba(26,18,89,0.06)] text-center">
         {[
           ["CTR", "4.2%"],
           ["CPC", "$0.38"],
@@ -386,17 +386,17 @@ function BrandVisual() {
     ["#6045FF", "Primary"],
     ["#9B85FF", "Soft"],
     ["#0FA3A3", "Accent"],
-    ["#13173B", "Ink"],
-    ["#FBF8F4", "Canvas"],
+    ["#0E0A2E", "Ink"],
+    ["#F8F7FC", "Canvas"],
   ];
   return (
     <div aria-hidden="true" className="grid gap-3 sm:grid-cols-[1fr_1.2fr]">
       {/* Type specimen */}
       <div className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-        <p className="mono text-[10px] uppercase tracking-[0.14em] text-[#8B91C4]">Typeface</p>
+        <p className="mono text-[10px] uppercase tracking-[0.14em] text-[#9A93CC]">Typeface</p>
         <p className="display mt-1 text-[56px] font-semibold leading-none text-white">Aa</p>
         <p className="mt-2 text-[13px] font-medium text-white">Outfit</p>
-        <p className="mono mt-0.5 text-[10px] text-[#8B91C4]">Regular · Medium · Semibold</p>
+        <p className="mono mt-0.5 text-[10px] text-[#9A93CC]">Regular · Medium · Semibold</p>
       </div>
       <div className="space-y-3">
         {/* Palette */}
@@ -407,13 +407,13 @@ function BrandVisual() {
                 style={{ background: c }}
                 className="block h-12 rounded-[10px] border border-white/15"
               />
-              <p className="mt-1 text-[10px] text-[#B7BEE6]">{name}</p>
+              <p className="mt-1 text-[10px] text-[#C4BDF2]">{name}</p>
             </div>
           ))}
         </div>
         {/* Logo on light and dark */}
         <div className="grid grid-cols-2 gap-2">
-          <div className="flex h-[72px] items-center justify-center gap-2 rounded-[12px] bg-[#FBF8F4] text-brand-purple">
+          <div className="flex h-[72px] items-center justify-center gap-2 rounded-[12px] bg-[#F8F7FC] text-brand-purple">
             <LogoMark className="h-7 w-7" />
             <span className="display text-[15px] font-semibold text-ink">brand</span>
           </div>
@@ -507,7 +507,7 @@ export default function Services() {
 
           {/* Mobile */}
           <RevealItem className="md:col-span-2 lg:col-span-5">
-            <article className="relative h-full overflow-hidden rounded-[28px] border border-white bg-[linear-gradient(160deg,#F3F0FF_0%,#E6E0FF_55%,#CFC3FF_100%)] p-7 shadow-[0_14px_36px_rgba(60,42,20,0.08)] sm:p-9 lg:min-h-[460px]">
+            <article className="relative h-full overflow-hidden rounded-[28px] border border-white bg-[linear-gradient(160deg,#F3F0FF_0%,#E6E0FF_55%,#CFC3FF_100%)] p-7 shadow-[0_14px_36px_rgba(26,18,89,0.08)] sm:p-9 lg:min-h-[460px]">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -bottom-24 -right-20 h-[300px] w-[300px] rounded-full bg-[radial-gradient(closest-side,rgba(96,69,255,0.35),transparent)] blur-[2px]"
@@ -562,7 +562,7 @@ export default function Services() {
                     tile="bg-white text-navy"
                     dark
                   />
-                  <p className="mt-4 max-w-[480px] text-[15px] leading-[24px] text-[#B7BEE6]">
+                  <p className="mt-4 max-w-[480px] text-[15px] leading-[24px] text-[#C4BDF2]">
                     A brand identity your audience remembers. From logos to full
                     design systems, we make your business unforgettable.
                   </p>

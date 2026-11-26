@@ -33,9 +33,9 @@ const quickStats = [
 
 const disciplines = [
   { tag: "01", label: "Strategy", cls: "bg-teal-tint text-teal-ink" },
-  { tag: "02", label: "Design", cls: "bg-[#EEF0FA] text-navy" },
+  { tag: "02", label: "Design", cls: "bg-[#EFEDFB] text-navy" },
   { tag: "03", label: "Engineering", cls: "bg-violet-tint text-violet-ink" },
-  { tag: "04", label: "Marketing", cls: "bg-signal-tint text-[#B33D0E]" },
+  { tag: "04", label: "Marketing", cls: "bg-signal-tint text-[#3A22C2]" },
 ];
 
 export default function About() {
@@ -89,7 +89,7 @@ export default function About() {
             Growvix at a glance
           </p>
 
-          <div className="mt-4 rounded-[18px] border border-[rgba(38,45,108,0.07)] bg-white p-5">
+          <div className="mt-4 rounded-[18px] border border-[rgba(26,18,89,0.07)] bg-white p-5">
             <div className="flex items-center gap-4">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-tint text-brand-purple">
                 <Award className="h-5 w-5" strokeWidth={1.75} />
@@ -109,7 +109,7 @@ export default function About() {
                   <p className="display text-[26px] font-semibold leading-tight text-ink">
                     {s.value}
                   </p>
-                  <p className="mono text-[11px] text-[#4A5068]">{s.label}</p>
+                  <p className="mono text-[11px] text-[#4F4B66]">{s.label}</p>
                 </div>
               ))}
             </div>

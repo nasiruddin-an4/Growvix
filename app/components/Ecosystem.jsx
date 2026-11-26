@@ -22,7 +22,7 @@ const wins = [
     sector: "E-commerce",
     quote:
       "Sales were flat. Then their smarter strategy and better ads took over, and revenue climbed within a single quarter.",
-    tint: "bg-signal-tint text-[#D84E12]",
+    tint: "bg-signal-tint text-[#4A2FE6]",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function Ecosystem() {
             {pillars.map(({ icon: Icon, label }) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white bg-white/80 px-3 py-1.5 text-[13px] font-medium text-navy shadow-[0_6px_16px_-10px_rgba(38,45,108,0.35)]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white bg-white/80 px-3 py-1.5 text-[13px] font-medium text-navy shadow-[0_6px_16px_-10px_rgba(26,18,89,0.35)]"
               >
                 <Icon className="h-3.5 w-3.5 text-brand-purple" strokeWidth={2} />
                 {label}
@@ -97,7 +97,7 @@ export default function Ecosystem() {
                   <TrendingUp className="h-6 w-6 text-teal" aria-hidden="true" />
                 </p>
                 <h3 className="mt-2 text-[17px] font-semibold text-ink">{label}</h3>
-                <p className="mt-4 border-t border-[rgba(38,45,108,0.08)] pt-4 text-[14px] leading-[22px] text-ink-soft sm:text-[15px] sm:leading-[23px]">
+                <p className="mt-4 border-t border-[rgba(26,18,89,0.08)] pt-4 text-[14px] leading-[22px] text-ink-soft sm:text-[15px] sm:leading-[23px]">
                   &ldquo;{quote}&rdquo;
                 </p>
               </TiltCard>

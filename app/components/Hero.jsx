@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Reveal from "./motion/Reveal";
+import IsoScene from "./IsoScene";
 
 const pulse = [
   {
@@ -40,10 +41,10 @@ export default function Hero() {
           as="p"
           y={16}
           rotate={0}
-          className="inline-flex items-center gap-2.5 rounded-full border border-white bg-white/80 py-1.5 pl-1.5 pr-4 shadow-[0_8px_24px_-12px_rgba(60,42,20,0.25)] backdrop-blur"
+          className="inline-flex items-center gap-2.5 rounded-full border border-white bg-white/80 py-1.5 pl-1.5 pr-4 shadow-[0_8px_24px_-12px_rgba(26,18,89,0.25)] backdrop-blur"
         >
           <span
-            className="flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#F67D41,#D84E12)] text-white"
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(180deg,#7A63FF,#4A2FE6)] text-white"
             aria-hidden="true"
           >
             <Sparkles className="h-3.5 w-3.5" />
@@ -95,22 +96,21 @@ export default function Hero() {
       {/* Visual stage */}
       <div className="container-x relative">
         <Reveal y={50} rotate={10} className="relative">
-          <div className="relative overflow-hidden rounded-[28px] border border-white shadow-[0_30px_80px_-40px_rgba(60,42,20,0.45)]">
-            <Image
-              src="/hero-devices.webp"
-              alt="Glass laptop and smartphone floating with glass cubes and a rising growth arrow on a purple gradient"
-              width={1792}
-              height={768}
-              priority
-              sizes="(min-width: 1280px) 1216px, 100vw"
-              className="aspect-[4/3] w-full object-cover object-[72%_50%] md:aspect-[1792/768]"
-            />
+          <div className="relative overflow-hidden rounded-[28px] border border-white shadow-[0_30px_80px_-40px_rgba(26,18,89,0.45)]">
+            {/* Animated isometric scene on a brand gradient with a faint isometric grid */}
+            <div className="relative aspect-[4/3] w-full bg-[radial-gradient(55%_70%_at_72%_42%,rgba(255,255,255,0.8),transparent_70%),linear-gradient(135deg,#ECE8FF_0%,#DED6FF_45%,#CDC2FF_100%)] md:aspect-[1792/768]">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 opacity-60 [background-image:repeating-linear-gradient(30deg,rgba(96,69,255,0.07)_0_1px,transparent_1px_34px),repeating-linear-gradient(150deg,rgba(96,69,255,0.07)_0_1px,transparent_1px_34px)]"
+              />
+              <IsoScene className="absolute left-1/2 top-[42%] h-[88%] w-auto -translate-x-1/2 -translate-y-1/2 md:top-1/2 md:h-[94%] md:left-auto md:right-[5%] md:translate-x-0" />
+            </div>
           </div>
 
           {/* Project pulse card */}
           <div className="glass relative z-10 hidden p-6 text-left md:absolute md:left-[4%] md:top-[12%] md:block md:w-[46%] lg:w-[40%]">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#6a3dfc,#F67D41)] text-white">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#6045ff,#7A63FF)] text-white">
                 <Sparkles className="h-5 w-5" />
               </span>
               <p className="mono text-[11px] uppercase leading-[16px] tracking-[0.14em] text-violet-ink">
@@ -129,7 +129,7 @@ export default function Hero() {
               {pulse.map(({ icon: Icon, text }) => (
                 <li
                   key={text}
-                  className="flex items-center gap-3 rounded-[12px] border border-[rgba(38,45,108,0.07)] bg-white/70 px-3 py-2.5 text-[14px] text-ink"
+                  className="flex items-center gap-3 rounded-[12px] border border-[rgba(26,18,89,0.07)] bg-white/70 px-3 py-2.5 text-[14px] text-ink"
                 >
                   <Icon
                     className="h-4 w-4 shrink-0 text-brand-purple"
@@ -176,7 +176,7 @@ export default function Hero() {
             <div className="mt-4 flex gap-2">
               <a
                 href="#services"
-                className="inline-flex h-10 flex-1 items-center justify-center rounded-[10px] border border-[rgba(38,45,108,0.12)] bg-white text-[14px] font-medium text-navy transition-colors hover:bg-violet-tint"
+                className="inline-flex h-10 flex-1 items-center justify-center rounded-[10px] border border-[rgba(26,18,89,0.12)] bg-white text-[14px] font-medium text-navy transition-colors hover:bg-violet-tint"
               >
                 Services
               </a>

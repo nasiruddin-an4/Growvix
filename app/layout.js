@@ -17,7 +17,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const viewport = {
-  themeColor: "#fbf8f4",
+  themeColor: "#f8f7fc",
 };
 
 export const metadata = {

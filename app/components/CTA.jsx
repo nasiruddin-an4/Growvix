@@ -4,7 +4,7 @@ import { ArrowRight, Clock, Mail, MessageSquare, Sparkles } from "lucide-react";
 import Reveal from "./motion/Reveal";
 
 const fieldClass =
-  "w-full rounded-[12px] border border-[rgba(38,45,108,0.12)] bg-white/80 px-4 py-3 text-[15px] text-ink placeholder:text-ink-faint transition focus:border-brand-purple/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-brand-purple/10";
+  "w-full rounded-[12px] border border-[rgba(26,18,89,0.12)] bg-white/80 px-4 py-3 text-[15px] text-ink placeholder:text-ink-faint transition focus:border-brand-purple/50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-brand-purple/10";
 
 const steps = [
   { icon: MessageSquare, text: "Tell us about your goals and timeline." },
@@ -45,7 +45,7 @@ export default function CTA() {
               {steps.map(({ icon: Icon, text }) => (
                 <li
                   key={text}
-                  className="flex items-center gap-3 rounded-[12px] border border-[rgba(38,45,108,0.07)] bg-white/70 px-3 py-2.5 text-[15px] text-ink backdrop-blur"
+                  className="flex items-center gap-3 rounded-[12px] border border-[rgba(26,18,89,0.07)] bg-white/70 px-3 py-2.5 text-[15px] text-ink backdrop-blur"
                 >
                   <Icon className="h-4 w-4 shrink-0 text-brand-purple" strokeWidth={1.75} />
                   {text}
